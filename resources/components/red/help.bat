@@ -1,3 +1,0 @@
-teamredminer.exe --help
-pause
-
