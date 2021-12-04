@@ -534,6 +534,12 @@ $(document).ready(() => {
                 confirmButtonText: 'Nice!'
             });
         }
+        else if(data.substr(0,4) === "prog")
+        {
+            $('#upModal').modal('show');
+            data = data.substr(4);
+
+        }
         else{
             console.log(data);
         }
