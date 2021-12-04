@@ -515,6 +515,7 @@ $(document).ready(() => {
 
     });
     window.api.receive("fromMainUpdater", data => {
+        console.log(data);
         if(data == "avail")
         {
             Swal.fire({
