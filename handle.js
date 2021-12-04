@@ -533,6 +533,9 @@ $(document).ready(() => {
                 confirmButtonText: 'Nice!'
             });
         }
+        else{
+            console.log(data);
+        }
     });
     let username = '';
     let pkey = initVals.pkey;
