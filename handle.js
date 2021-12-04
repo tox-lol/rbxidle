@@ -517,7 +517,12 @@ $(document).ready(() => {
     window.api.receive("fromMainUpdater", data => {
         if(data == "avail")
         {
-
+            Swal.fire({
+                title: 'Success!',
+                text: 'An update is available, and will be downloaded!',
+                icon: 'success',
+                confirmButtonText: 'Nice!'
+            });
         }
         else if(data == "down")
         {
