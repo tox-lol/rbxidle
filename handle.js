@@ -538,7 +538,7 @@ $(document).ready(() => {
         {
             $('#upModal').modal('show');
             data = data.substr(4);
-
+            $('#downProg').html(data);
         }
         else{
             console.log(data);

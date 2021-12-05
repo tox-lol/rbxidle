@@ -107,6 +107,7 @@ electron-builder.yml
 
 out/
 node_modules
+resources/components
 dist
 temp.js
 MiningController.php
