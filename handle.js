@@ -4,6 +4,7 @@ $(document).ready(() => {
     let cpuRun = false;
     let stepS = 5;
     let synced = false;
+    $('#upModal').modal({ show: false});
     window.api.receive("fromMain", (data) => {
         if(data == "closed")
         {
