@@ -27,6 +27,29 @@
     "electron-devtools-installer": "^3.2.0",
     "git": "^0.1.5"
   },
+  "build": {
+    "files": [  "**/*",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+      "!.editorconfig",
+      "!**/._*",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+      "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+      "!**/{appveyor.yml,.travis.yml,circle.yml}",
+      "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}",
+      "!**/out${/*}",
+      "!**/dev-app-update.yml"
+    ],
+    "appId": "com.rbxidle.app",
+    "publish": [{
+      "provider": "github",
+      "owner": "tox-lol",
+      "repo": "rbxidle"
+    }]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/tox-lol/rbxidle.git"
