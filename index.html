@@ -13,6 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/css4/css/bootstrap.css" />
     <link rel="stylesheet" href="./css/css4/css/mdb.min.css" />
+    <link rel="stylesheet" href="./css/css5/introjs.min.css" />
 
     <link rel="stylesheet" href="./css/css4/css/style.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -24,6 +25,65 @@
         overflow: hidden;
         background-color: #2E2E2E;
         max-height: 100vh;
+    }
+    .introjs-tooltip {
+        background-color: rgba(000, 0, 0, 0.5);
+        color: #fff;
+    }
+
+    .introjs-button,
+    .introjs-button:hover, .introjs-button:focus, .introjs-button:active,
+    .introjs-disabled, .introjs-disabled:focus, .introjs-disabled:hover {
+        outline: none;
+        background-image: none;
+        background-color: transparent;
+        color: #fff;
+        border: 1px solid transparent;
+        border-radius: 50px;
+        box-shadow: none;
+        border-shadow: none;
+        text-shadow: none;
+    }
+
+    .introjs-button:hover, .introjs-button:focus, .introjs-button:active {
+        border: 1px solid #fff
+    }
+    .introjs-disabled, .introjs-disabled:focus, .introjs-disabled:hover {
+        color: #ccc;
+        border: 1px solid transparent;
+    }
+
+    .introjs-arrow {
+        border: 10px solid #fff;
+    }
+    .introjs-arrow.top, .introjs-arrow.top-middle, .introjs-arrow.top-right {
+        border-color: transparent transparent rgba(000, 0, 0, 0.5);
+        top: -20px;
+        left: 20px;
+    }
+    .introjs-arrow.bottom, .introjs-arrow.bottom-middle, .introjs-arrow.bottom-right {
+        border-color: rgba(000, 0, 0, 0.5) transparent transparent;
+        bottom: -20px;
+        left: 20px;
+    }
+    .introjs-arrow.left, .introjs-arrow.right {
+        top: 20px;
+    }
+    .introjs-arrow.left-bottom, .introjs-arrow.right-bottom {
+        bottom: 20px;
+    }
+
+    .introjs-arrow.left, .introjs-arrow.left-bottom {
+        left: -20px;
+        border-color: transparent rgba(000, 0, 0, 0.5) transparent transparent;
+    }
+    .introjs-arrow.right, .introjs-arrow.right-bottom {
+        right: -20px;
+        border-color: transparent transparent transparent rgba(000, 0, 0, 0.5);
+    }
+
+    .introjs-fixParent {
+        position: absolute;
     }
     .progress-bar-vertical {
         min-height: 200px;
@@ -69,16 +129,16 @@
                 <li class="nav-item" style="border-radius: 0px 25px 25px 0px;">
                     <a class="nav-link active" data-toggle="tab" href="#homepanel" role="tab"><i class="fas fa-home fa-4x"></i></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="wallet">
                     <a class="nav-link" data-toggle="tab" href="#withdrawpanel" role="tab"><i class="fas fa-wallet fa-4x"></i></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="levels">
                     <a class="nav-link" data-toggle="tab" href="#panel13" role="tab"><i class="fas fa-gem fa-4x"></i></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="codesI">
                     <a class="nav-link" data-toggle="tab" href="#codes" role="tab"><i class="fas fa-meteor fa-4x"></i></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="settings">
                     <a class="nav-link" data-toggle="tab" href="#settingsPanel" role="tab"><i class="fas fa-sliders-h fa-4x"></i></a>
                 </li>
             </ul>
@@ -1220,9 +1280,9 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="list-group mt-2">
-                            <li class="list-group-item active h5-responsive text-light font-weight-bold"><a href="#" class="material-tooltip-main" data-toggle="tooltip" title="v2.0.12">
+                            <li class="list-group-item active h5-responsive text-light font-weight-bold">
 
-                                <span class="text-light" style="">Version 2.0.12</span></a></li>
+                                <span class="text-light" id="version" style="">Version 2.0.12</span></li>
                         </ul>
 
 
@@ -1288,6 +1348,7 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>
 <script src="./handle.js" type="text/javascript"></script>
+    <script src="./css/css5/intro.min.js" type="text/javascript"></script>
 <script>
 $(document).ready(function() {
 
@@ -1322,12 +1383,54 @@ $(document).ready(function() {
     $(document).ready(() => {
         if(initVals.first)
         {
-            Swal.fire({
-                title: 'Welcome!',
-                text: 'Welcome to RBXIDLE! Make sure to join our Discord server for any problems you might have, as well as for access to special promotions and codes!',
-                icon: 'info',
-                confirmButtonText: 'Awesome!'
+            let intro = introJs().setOption("scrollToElement", false);
+            intro.setOptions({
+                exitOnOverlayClick: false,
+                exitOnEsc: false,
+                overlayOpacity: 0.7,
+                steps: [
+                    {
+                        element: document.querySelector('#minerCanvas'),
+                        intro: 'Welcome to RBXIDLE! This short tutorial will show you how the app works.',
+                        position: 'top'
+                    },
+                    {
+                        element: document.querySelector('#rbxIndicator'),
+                        intro: 'Here, you can see your available balance.',
+                        position: 'top'
+                    },
+                    {
+                        element: document.querySelector('#wallet'),
+                        intro: 'You will be able to withdraw your balance in the wallet tab.',
+                        position: 'right'
+                    },
+                    {
+                        element: document.querySelector('#levels'),
+                        intro: 'Keep mining to level up and earn bonus rewards, which can be claimed here!',
+                        position: 'right'
+                    },
+                    {
+                        element: document.querySelector('#codesI'),
+                        intro: 'Promo codes can be redeemed here!',
+                        position: 'right'
+                    },
+                    {
+                        element: document.querySelector('#settings'),
+                        intro: 'You can change settings on this page. Your private account key is also here. Make sure to keep this in a safe place in case you ever need to recover your account!',
+                        position: 'right'
+                    },
+                    {
+                        element: document.querySelector('#StartMining'),
+                        intro: 'When you click the start button, your computer will begin mining and you will start earning points!',
+                        position: 'top'
+                    },
+                    {
+                        element: document.querySelector('#wallet'),
+                        intro: 'Make sure to join our discord server for promo codes and giveaways, as well as any additional support you might need!',
+                        position: 'right'
+                    }]
             });
+            intro.start();
         }
 
     });

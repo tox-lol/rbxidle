@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let args = {};
     if(initVals.gCardName == 'Initializing...')
     {
-        args.req="[gi]";
+        args.req="[gf]";
         ipcRenderer.send("toMain", args);
     }
     contextBridge.exposeInMainWorld('initVals', initVals);

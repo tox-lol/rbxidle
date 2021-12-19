@@ -1,6 +1,6 @@
 {
   "name": "RBXIDLE",
-  "version": "2.0.5",
+  "version": "2.0.51",
   "description": "A robux mining application",
   "main": "main.js",
   "scripts": {
@@ -28,7 +28,8 @@
     "git": "^0.1.5"
   },
   "build": {
-    "files": [  "**/*",
+    "files": [
+      "**/*",
       "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
       "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
       "!**/node_modules/*.d.ts",
@@ -44,11 +45,13 @@
       "!**/resources/vars/*"
     ],
     "appId": "com.rbxidle.app",
-    "publish": [{
-      "provider": "github",
-      "owner": "tox-lol",
-      "repo": "rbxidle"
-    }]
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "tox-lol",
+        "repo": "rbxidle"
+      }
+    ]
   },
   "repository": {
     "type": "git",

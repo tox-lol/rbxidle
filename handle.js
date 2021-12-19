@@ -38,8 +38,18 @@ $(document).ready(() => {
             cpuRun = false;
             $('#StartLegacy').removeAttr("disabled");
         }
-        console.log('HERE:: ' + data.substr(0,4));
-        console.log('DATA:: ' + data);
+        if(data.substr(0,3) == '[r]')
+        {
+            let msg = "ERROR: No connection with";
+            if(data.indexOf(msg) !== -1) {
+                Swal.fire({
+                    title: 'Failed to connect',
+                    text: 'You have failed to connect to the mining servers. You can try stopping the miner and restarting. If this does not work, please contact support in our Discord channel.',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+            }
+        }
         if(data.substr(0,3) == '[r]' && running1 == false)
         {
             $('#startMiningDiv').attr("hidden",true);
@@ -516,7 +526,6 @@ $(document).ready(() => {
 
     });
     window.api.receive("fromMainUpdater", data => {
-        console.log(data);
         if(data == "avail")
         {
             Swal.fire({
@@ -545,6 +554,7 @@ $(document).ready(() => {
             console.log(data);
         }
     });
+    $('#version').html(initVals.version);
     let username = '';
     let pkey = initVals.pkey;
     if(initVals.currMiner == 'def'){
@@ -810,7 +820,6 @@ $(document).ready(() => {
                     },
                     error: function (response) {
                         let json = response.responseJSON;
-                        console.log(json);
                         Swal.fire({
                             icon: 'error',
                             title: 'Oh No!',
@@ -962,7 +971,6 @@ $(document).ready(() => {
                 let args = {};
                 args.key = $("#revoceryKeyI").val();
                 args.req = "[ra]";
-                console.log("args: " + JSON.stringify(args));
                 window.api.send("toMain", args);
             }
             else
