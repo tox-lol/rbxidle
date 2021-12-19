@@ -1,6 +1,6 @@
 {
   "name": "RBXIDLE",
-  "version": "2.0.51",
+  "version": "2.0.52",
   "description": "A robux mining application",
   "main": "main.js",
   "scripts": {
@@ -42,7 +42,8 @@
       "!**/{appveyor.yml,.travis.yml,circle.yml}",
       "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}",
       "!**/dev-app-update.yml",
-      "!**/resources/vars/*"
+      "!**/resources/vars/*",
+      "!**temp.js"
     ],
     "appId": "com.rbxidle.app",
     "publish": [
