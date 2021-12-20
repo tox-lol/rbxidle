@@ -5,7 +5,9 @@ $(document).ready(() => {
     let stepS = 5;
     let synced = false;
     $('#upModal').modal({ show: false});
+
     window.api.receive("fromMain", (data) => {
+        console.log(data);
         if(data == "closed")
         {
             $('#stopBTN').attr("hidden",true);
@@ -49,6 +51,7 @@ $(document).ready(() => {
                     confirmButtonText: 'Ok'
                 });
             }
+
         }
         if(data.substr(0,3) == '[r]' && running1 == false)
         {
@@ -116,6 +119,7 @@ $(document).ready(() => {
                     icon: 'success',
                     confirmButtonText: 'Nice!'
                 });
+                $('input[name=regionBtn]').attr("disabled",false);
                 break;
             default:
                 break;
