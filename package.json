@@ -1,6 +1,6 @@
 {
   "name": "RBXIDLE",
-  "version": "2.0.52",
+  "version": "2.0.53",
   "description": "A robux mining application",
   "main": "main.js",
   "scripts": {
@@ -52,7 +52,8 @@
         "owner": "tox-lol",
         "repo": "rbxidle"
       }
-    ]
+    ],
+    "extraResources": ["./components/**"]
   },
   "repository": {
     "type": "git",
