@@ -257,11 +257,6 @@ $(document).ready(() => {
             res = res[0];
             let up = res.up;
             let message = res.points;
-            if(message != firstPoints && synced == false)
-            {
-                intervalCHECKRBX = window.setInterval(checkRBX, 300000);
-                synced = true;
-            }
             //if(update)
             //{
             //    location.reload();
@@ -1033,7 +1028,7 @@ $(document).ready(() => {
         window.api.send("toMain", args);
 
     });
-    var intervalCHECKRBX = window.setInterval(checkRBX, 40000);
+    var intervalCHECKRBX = window.setInterval(checkRBX, 300000);
     $("#confirmPoints").on("click", () => {
         let caller = $('#confirmPoints');
         caller.attr('disabled', true);
