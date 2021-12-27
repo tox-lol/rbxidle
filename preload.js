@@ -46,7 +46,7 @@ window.addEventListener('DOMContentLoaded', () => {
             replaceText('supBadge', '<span class="badge text-light badge-danger">Unsupported</span>');
             break;
         case 1:
-            replaceText('supBadge', '<span class="badge text-light badge-warning">Potentially Supported</span>');
+            replaceText('supBadge', '<span class="badge text-light badge-warning">Supported</span>');
             break;
         case 2:
             replaceText('supBadge', '<span class="badge text-light badge-success">Turbo</span>');
