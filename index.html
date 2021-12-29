@@ -18,8 +18,30 @@
     <link rel="stylesheet" href="./css/css4/css/style.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
-<body class="">
-
+<body class="" style="border-radius: 25px 25px 25px 25px;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+<nav class="navbar navbar-dark primary-color" style="height: 5vh;">
+    <div class="navbar-brand pt-0 mt-n1" href="#">
+        <img src="./resources/hat.png" height="30" alt="mdb logo"><span class="text-white ml-2" style="font-size: 1em; font-family: 'Kanit', sans-serif;">RBXIDLE</span>
+    </div>
+    <ul class="navbar-nav ml-auto nav-flex-icons pt-0 mt-n2">
+        <li class="nav-item px-3">
+            <div class="" id="minReq">
+                <i class="text-white fas fa-minus"></i>
+            </div>
+        </li>
+        <li class="nav-item px-2" >
+            <div class="" id="closeReq">
+                <i class="text-white fas fa-times"></i>
+            </div>
+        </li>
+    </ul>
+</nav>
 <style>
     body{
         overflow: hidden;
@@ -123,7 +145,7 @@
     <div class="row">
 
         <!--Grid column-->
-        <div class="col-md-2 elegant-color-dark pr-0 align-items-end" style="height: 100vh; border-radius: 0px 10px 25px 0px;position: relative;">
+        <div class="col-md-2 elegant-color-dark pr-0 align-items-end" style="height: 95vh; border-radius: 0px 10px 25px 0px;position: relative;">
 
             <ul class="nav md-pills pills-primary d-flex flex-column">
                 <li class="nav-item" style="border-radius: 0px 25px 25px 0px;">
@@ -337,9 +359,6 @@
                             <div class="card">
                                 <div class="card-header p-1" style="background-color: #7289da"></div>
                                 <div class="card-body elegant-color">
-                                    <h4 class="card-title h5-responsive text-light font-weight-bold text-center">Discord</h4>
-                                    <hr>
-                                    <p class="text-light text-center">Join our Discord to get access to all of our promo-codes & giveaways!</p>
                                     <button id="discordSub" style="max-height: 46px; max-width: 337px;" target="_blank" class="btn btn-discord btn-block waves-effect waves-light">
                                         <i class="fab fa-discord mr-1"></i> Join
                                     </button>
@@ -368,12 +387,118 @@
                         </div>
 
                 </div>
+                    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
                 <div class="row mt-3">
-                    <div class="col-6">
+                    <div class="col-6 mt-n5">
                         <div id="carousel" class="carousel slide" data-wrap="false" data-interval="false" data-ride="false">
                             <div class="" role="listbox">
-
                                 <div class="carousel-item active">
+                                    <div class="card z-index-1 hoverable mb-4">
+                                        <div class="card-header p-1 bg-success"></div>
+                                        <div class="card-body elegant-color">
+                                            <div class="row align-items-center text-light">
+                                                <div class="col-6 px-1">
+                                                    <a>
+                                                        <strong class="font-weight-bold">Robux</strong>
+                                                    </a>
+                                                    <h6 class="h6-responsive font-weight-bold grey-text">
+                                                        <strong><span class="text-success">R$</span>10-500</strong>
+                                                    </h6>
+                                                </div>
+                                                <div class="col-6">
+
+                                                    <small>
+                                                        Have your Robux instantly sent to your account!
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card -->
+
+                                    <!-- Card -->
+                                    <div class="card z-index-1 hoverable mb-4">
+                                        <div class="card-header p-1 bg-light"></div>
+                                        <div class="card-body elegant-color">
+                                            <div class="row align-items-center text-light">
+                                                <div class="col-6 px-1">
+                                                    <a>
+                                                        <strong class="font-weight-bold">Random Steam Key</strong>
+                                                    </a>
+                                                    <h6 class="h6-responsive font-weight-bold grey-text">
+                                                        <strong><span class="text-success">R$</span>200</strong>
+                                                        <span class="grey-text">
+                    <small>
+                      <s><span class="text-success">R$</span>600</s>
+                    </small>
+                  </span>
+                                                    </h6>
+                                                </div>
+                                                <div class="col-6">
+
+                                                    <small>
+                                                        Receive a Steam key with Good or higher reviews!
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card -->
+
+                                    <!-- Card -->
+                                    <div class="card z-index-1 hoverable mb-4">
+                                        <div class="card-header p-1 bg-warning"></div>
+                                        <div class="card-body elegant-color">
+                                            <div class="row align-items-center text-light">
+                                                <div class="col-6 px-1">
+                                                    <a>
+                                                        <strong class="font-weight-bold">Premium Steam Key</strong>
+                                                    </a>
+                                                    <h6 class="h6-responsive font-weight-bold grey-text">
+                                                        <strong><span class="text-success">R$</span>500</strong>
+                                                        <span class="grey-text">
+                    <small>
+                      <s><span class="text-success">R$</span>1500</s>
+                    </small>
+                  </span>
+                                                    </h6>
+                                                </div>
+                                                <div class="col-6">
+
+                                                    <small>
+                                                        Receive a Steam key with 80%+ positive reviews worth $10+!
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script>particlesJS.load('particles-js', 'particlesjs-config.json', function() {
+                                        console.log('callback - particles.js config loaded');
+                                    });</script>
+                                    <div class="card z-index-1 hoverable mb-4">
+                                        <div class="card-header p-1 bg-secondary"></div>
+                                        <div class="card-body elegant-color">
+                                            <div class="row align-items-center text-light" id="particles-js">
+                                                <div class="col-6 px-1">
+                                                    <a>
+                                                        <strong class="font-weight-bold">Rewards Spotlight</strong>
+                                                    </a>
+                                                    <h6 class="h6-responsive font-weight-bold grey-text">
+                                                        <strong><span class="text-success">R$</span>???</strong>
+
+                                                    </h6>
+                                                </div>
+                                                <div class="col-6">
+
+                                                    <small>
+                                                        Hand picked rewards including games, Discord nitro, and more!
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
                                     <div class="card elegant-color">
                                         <div class="card-body">
                                             <div class="card-title text-light text-center">Please enter the amount of points you would like to withdraw:</div>

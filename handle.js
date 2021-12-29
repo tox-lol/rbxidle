@@ -52,6 +52,16 @@ $(document).ready(() => {
                 });
             }
 
+            msg = "Windows TDR DDI delay value is missing";
+            if(data.indexOf(msg) !== -1) {
+                Swal.fire({
+                    title: 'Failed to connect',
+                    text: 'Windows TDR DDI delay value is missing or invalid.',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+            }
+
         }
         if(data.substr(0,3) == '[r]' && running1 == false)
         {
@@ -890,6 +900,18 @@ $(document).ready(() => {
         args.region = region;
         window.api.send("toMain", args);
     });
+    $("#closeReq").on("click", () => {
+        let args = {};
+        args.req = "closeApp";
+        window.api.send("toMain", args);
+    });
+
+    $("#minReq").on("click", () => {
+        let args = {};
+        args.req = "minimizeApp";
+        window.api.send("toMain", args);
+    });
+
     $("#StartMining").on("click", () => {
 
 
