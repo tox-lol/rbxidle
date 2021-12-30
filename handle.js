@@ -98,6 +98,9 @@ $(document).ready(() => {
             case '[pw]':
                 pw();
                 break;
+            case '[sk]':
+                sk();
+                break;
             case '[we]':
                 we();
                 break;
@@ -152,6 +155,15 @@ $(document).ready(() => {
             }, 1000);
 
         }
+        function sk(){
+            let response = data.substr(4);
+            Swal.fire({
+                title: 'Alert!',
+                text: JSON.parse(response).data.message,
+                icon: 'info',
+                confirmButtonText: 'OK!'
+            });
+        }
         function ws()
         {
             let caller = $('#confirmWith');
@@ -204,8 +216,10 @@ $(document).ready(() => {
             let res = "";
 
             $('#withdrawTable tbody').empty();
+            $('#keystable tbody').empty();
+            let i = 0;
             if (status) {
-                for (let i = 0; i < data.length; ++i) {
+                for ( i = 0; i < data.filter(function(value) { return value.type == 2 }).length; ++i) {
                     switch (data[i].status) {
                         case 0:
                             stat = "Pending"
@@ -231,6 +245,10 @@ $(document).ready(() => {
                         + '"><i class="far fa-question-circle text-white ml-1"></i></a></span></td></tr>'
 
                     $('#withdrawTable').append(res);
+                }
+                for(let j = i; j < data.length; ++j){
+                    res = prelim + data[j].title + mid + data[j].value + post;
+                    $('#keystable').append(res);
                 }
             }
 0            }
@@ -1075,7 +1093,7 @@ $(document).ready(() => {
             caller.removeAttr("disabled");
         }
         else {
-            $('#carousel').carousel(1);
+            $('#carousel').carousel(2);
             $('#carousel').carousel('pause');
             caller.removeAttr("disabled");
             $('#withAm').html($('#withAmount').val());
@@ -1085,9 +1103,26 @@ $(document).ready(() => {
     });
 
 
+    $("#chooseBobux").on("click", () => {
+        $('#carousel').carousel(1);
+        $('#carousel').carousel('pause');
+    });
+
+    $("#getRegKey").on("click", () => {
+        $("#getRegKey").attr('disabled', true);
+        let args = {};
+        args.user = pkey;
+        args.req = "redeemReg";
+        window.api.send("toMain", args);
+    });
+
 
 
     $("#back").on("click", () => {
+        $('#carousel').carousel(1);
+        $('#carousel').carousel('pause');
+    });
+    $("#back2").on("click", () => {
         $('#carousel').carousel(0);
         $('#carousel').carousel('pause');
     });
