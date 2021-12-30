@@ -251,7 +251,7 @@ $(document).ready(() => {
                     $('#keystable').append(res);
                 }
             }
-0            }
+        }
         function ra()
         {
             data = data.substr(4);
