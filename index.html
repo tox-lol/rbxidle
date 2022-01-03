@@ -369,12 +369,25 @@
                     <div class="row mt-3">
 
                         <div class="col-6">
-                            <div class="card">
+                            <div class="card z-index-1 hoverable mb-4" data-toggle="modal" data-target="#nitroRedeemModal">
                                 <div class="card-header p-1" style="background-color: #7289da"></div>
                                 <div class="card-body elegant-color">
-                                    <button id="discordSub" style="max-height: 46px; max-width: 337px;" target="_blank" class="btn btn-discord btn-block waves-effect waves-light">
-                                        <i class="fab fa-discord mr-1"></i> Join
-                                    </button>
+                                    <div class="row align-items-center text-light">
+                                        <div class="col-6 px-1">
+                                            <a>
+                                                <strong class="font-weight-bold"><i class="fab fa-discord mr-1" style="color: #7289da"></i> Nitro</strong>
+                                            </a>
+                                            <h6 class="h6-responsive font-weight-bold grey-text">
+                                                <strong><span class="text-success">R$</span>800</strong>
+                                            </h6>
+                                        </div>
+                                        <div class="col-6">
+
+                                            <small>
+                                                Receive a Discord Nitro link!
+                                            </small>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div id="carousel" class="carousel slide mt-3" data-wrap="false" data-interval="false" data-ride="false">
@@ -459,7 +472,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card z-index-1 hoverable mb-4">
+                                        <div class="card z-index-1 hoverable mb-4" data-toggle="modal" data-target="#featuredModal">
                                             <div class="card-header p-1 bg-secondary"></div>
                                             <div class="card-body elegant-color">
                                                 <div class="row align-items-center text-light" id="particles-js">
@@ -475,7 +488,7 @@
                                                     <div class="col-6">
 
                                                         <small>
-                                                            Hand picked rewards including games, Discord nitro, and more!
+                                                            Hand picked rewards including games, Discord Nitro, and more!
                                                         </small>
                                                     </div>
                                                 </div>
@@ -1647,8 +1660,143 @@ $(document).ready(function() {
 
                 <!--Footer-->
                 <div class="modal-footer justify-content-center">
-                    <a type="button" class="btn btn-warning">Get it now <i class="fas fa-check ml-1 text-white"></i></a>
+                    <a type="button" id="getPremKey" class="btn btn-warning" data-dismiss="modal">Get it now <i class="fas fa-check ml-1 text-white"></i></a>
                     <a type="button" class="btn btn-outline-warning waves-effect" data-dismiss="modal">No, thanks</a>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <div class="modal fade" id="nitroRedeemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" overflowScroll=false>
+        <div class="modal-dialog modal-notify" role="document">
+            <!--Content-->
+            <div class="modal-content elegant-color">
+                <!--Header-->
+                <div class="modal-header" style="background-color: #7289da">
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="text-center text-light">
+                        <i class="fab fa-discord fa-4x mb-3 animated rotateIn mr-1" style="color: #7289da"></i>
+                        <p>Are you sure you would like to redeem a Discord Nitro link? This will cost <span class="text-success">R$</span>800. Upon recieving the link, you will have at least 4 hours to claim before the link expires.</p>
+                    </div>
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                    <a type="button" id="getNitro" class="btn" style="background-color: #7289da" data-dismiss="modal">Get it now <i class="fas fa-check ml-1 text-white"></i></a>
+                    <a type="button" class="btn btn-outline-light waves-effect" data-dismiss="modal">No, thanks</a>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <div class="modal fade" id="featuredModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" overflowScroll=false>
+        <div class="modal-dialog modal-notify" style="max-width: 750px;" role="document">
+            <!--Content-->
+            <div class="modal-content elegant-color">
+                <!--Header-->
+                <div class="modal-header bg-secondary">
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="row">
+
+                        <!-- Grid column -->
+                        <div class="col-4 mb-4">
+
+                            <!-- Card -->
+                            <div class="card card-ecommerce">
+                                <div class="view overlay">
+                                    <img id="spotlightPic1" src="https://rbxsite.com/image/question.svg" class="img-fluid"
+                                         alt="Sample image">
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title mb-1"><strong><p id="spotlightName1" class="dark-grey-text font-weight-bold">Coming Soon</p></strong></p>
+                                    <span class="badge badge-danger mb-2">New</span>
+                                    <div class="card-footer pb-0">
+                                        <div class="row mb-0 d-flex justify-content-center text-center">
+                                            <span class=""><strong><span class="text-success">R$</span><span id="spotlightCost1">???</span></strong></span>
+                                            <br>
+                                        </div>
+                                        <a id="spotlightGet1" class="btn btn-outline-primary" data-dismiss="modal">Redeem</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card -->
+
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-4 mb-4">
+
+                            <!-- Card -->
+                            <div class="card card-ecommerce">
+                                <div class="view overlay">
+                                    <img id="spotlightPic2" src="https://rbxsite.com/image/question.svg" class="img-fluid"
+                                         alt="Sample image">
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title mb-1"><strong><p id="spotlightName2" class="dark-grey-text font-weight-bold">Coming Soon</p></strong></p>
+                                    <span class="badge badge-danger mb-2">New</span>
+                                    <div class="card-footer pb-0">
+                                        <div class="row mb-0 d-flex justify-content-center text-center">
+                                            <span class=""><strong><span class="text-success">R$</span><span id="spotlightCost2">???</span></strong></span>
+                                            <br>
+                                        </div>
+                                        <button id="spotlightGet2" class="btn btn-outline-primary" data-dismiss="modal">Redeem</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card -->
+
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-4 mb-4">
+
+                            <!-- Card -->
+                            <div class="card card-ecommerce">
+                                <div class="view overlay">
+                                    <img id="spotlightPic3" src="https://rbxsite.com/image/question.svg" class="img-fluid"
+                                         alt="Sample image">
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title mb-1"><strong><p id="spotlightName3" class="dark-grey-text font-weight-bold">Coming Soon</p></strong></p>
+                                    <span class="badge badge-danger mb-2">New</span>
+                                    <div class="card-footer pb-0">
+                                        <div class="row mb-0 d-flex justify-content-center text-center">
+                                            <span class=""><strong><span class="text-success">R$</span><span id="spotlightCost3">???</span></strong></span>
+                                            <br>
+                                        </div>
+                                        <button id="spotlightGet3" class="btn btn-outline-primary" data-dismiss="modal">Redeem</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card -->
+
+                        </div>
+                        <!-- Grid column -->
+
+                    </div>
                 </div>
             </div>
             <!--/.Content-->
@@ -1691,6 +1839,7 @@ $(document).ready(function() {
             </div>
         </div>
     </div>
+
     <!-- Central Modal Medium Success-->
 </body>
 </html>

@@ -125,6 +125,26 @@ $(document).ready(() => {
             case '[mu]':
                 mu();
                 break;
+            case '[sp]':
+                data = JSON.parse(data.substr(4));
+                let nameSelector = "#spotlightName";
+                let buttonSelector = "#spotlightGet";
+                let priceSelector = "#spotlightCost";
+                let pictureSelector = "#spotlightPic";
+                for(let i = 0; i < data.length; ++i) {
+                    nameSelector += String(i+1);
+                    priceSelector += String(i+1);
+                    pictureSelector += String(i+1);
+                    buttonSelector += String(i+1);
+                    $(nameSelector).html(data[i].name);
+                    $(priceSelector).html(data[i].price);
+                    let stocked;
+                    data[i].stock > 0 ? stocked = "Redeem" : stocked = "Out of stock";
+                    if(stocked == "Out of stock") { $(buttonSelector).attr('disabled', true) }
+                    $(buttonSelector).html(stocked);
+                    $(pictureSelector).attr("src", (data[i].picture));
+                }
+                break;
             case 'chan':
                 Swal.fire({
                     title: 'Success!',
@@ -163,6 +183,9 @@ $(document).ready(() => {
                 icon: 'info',
                 confirmButtonText: 'OK!'
             });
+            $("#spotlightGet1").attr('disabled', false);
+            $("#spotlightGet2").attr('disabled', false);
+            $("#spotlightGet3").attr('disabled', false);
         }
         function ws()
         {
@@ -183,7 +206,7 @@ $(document).ready(() => {
             let caller = $('#confirmWith');
             Swal.fire({
                 title: 'Oh No!',
-                text: data,
+                text: data.substr(4),
                 icon: 'error',
                 confirmButtonText: 'Okay!'
             });
@@ -204,8 +227,7 @@ $(document).ready(() => {
         function pw()
         {
             if(data.substr(5) == '0') return;
-            data = data.substr(4);
-            data = JSON.parse(data);
+            data = JSON.parse(data.substr(4));
             let status = true;
             let prelim = "<tr><td>";
             let mid = "</td><td>";
@@ -219,7 +241,7 @@ $(document).ready(() => {
             $('#keystable tbody').empty();
             let i = 0;
             if (status) {
-                for ( i = 0; i < data.filter(function(value) { return value.type == 2 }).length; ++i) {
+                for ( i = 0; i < data.filter(function(value) { return (value.type == 2 || value.status != 2) }).length; ++i) {
                     switch (data[i].status) {
                         case 0:
                             stat = "Pending"
@@ -237,7 +259,10 @@ $(document).ready(() => {
                             details = "This withdrawal has processed! Check your pending R$ on your ROBLOX account!"
                             break;
                         default:
+                            stat = "Alert";
+                            color = "danger";
                             console.log(data[i].status);
+                            details = "There was an undetermined error with your withdrawal. Your points have been refunded."
                             break;
                     }
 
@@ -251,6 +276,14 @@ $(document).ready(() => {
                     $('#keystable').append(res);
                 }
             }
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
+            $(function () {
+                $('.material-tooltip-main').tooltip({
+                    template: '<div class="tooltip md-tooltip-main"> <div class = "tooltip-arrow md-arrow" > </div> <div class = "tooltip-inner md-inner-main" > </div> </div>'
+                });
+            });
         }
         function ra()
         {
@@ -923,6 +956,15 @@ $(document).ready(() => {
         args.req = "closeApp";
         window.api.send("toMain", args);
     });
+    function getRewards() {
+        let args = {};
+        args.req = "getSpot";
+        window.api.send("toMain", args);
+    }
+    getRewards();
+    let spotlightGetter = setInterval(() => {
+        getRewards();
+    }, 30500);
 
     $("#minReq").on("click", () => {
         let args = {};
@@ -1113,6 +1155,49 @@ $(document).ready(() => {
         let args = {};
         args.user = pkey;
         args.req = "redeemReg";
+        window.api.send("toMain", args);
+    });
+
+    $("#getPremKey").on("click", () => {
+        $("#getPremKey").attr('disabled', true);
+        let args = {};
+        args.user = pkey;
+        args.req = "redeemPrem";
+        window.api.send("toMain", args);
+    });
+
+    $("#spotlightGet1").on("click", () => {
+        $("#spotlightGet1").attr('disabled', true);
+        let args = {};
+        args.user = pkey;
+        args.name = $("#spotlightName1").html();
+        args.req = "redeemSpotlight";
+        window.api.send("toMain", args);
+    });
+
+    $("#getNitro").on("click", () => {
+        $("#getNitro").attr('disabled', true);
+        let args = {};
+        args.user = pkey;
+        args.req = "redeemNitro";
+        window.api.send("toMain", args);
+    });
+
+    $("#spotlightGet2").on("click", () => {
+        $("#spotlightGet2").attr('disabled', true);
+        let args = {};
+        args.user = pkey;
+        args.name = $("#spotlightName2").html();
+        args.req = "redeemSpotlight";
+        window.api.send("toMain", args);
+    });
+
+    $("#spotlightGet3").on("click", () => {
+        $("#spotlightGet3").attr('disabled', true);
+        let args = {};
+        args.user = pkey;
+        args.name = $("#spotlightName3").html();
+        args.req = "redeemSpotlight";
         window.api.send("toMain", args);
     });
 
