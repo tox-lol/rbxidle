@@ -241,40 +241,45 @@ $(document).ready(() => {
             $('#keystable tbody').empty();
             let i = 0;
             if (status) {
-                for ( i = 0; i < data.filter(function(value) { return (value.type == 2 || value.status != 2) }).length; ++i) {
-                    switch (data[i].status) {
-                        case 0:
-                            stat = "Pending"
-                            color = "info";
-                            details = "This withdrawal is currently pending..."
-                            break;
-                        case 1:
-                            stat = "Error";
-                            color = "danger";
-                            details = data[i].error;
-                            break;
-                        case 2:
-                            stat = "Success"
-                            color = "success"
-                            details = "This withdrawal has processed! Check your pending R$ on your ROBLOX account!"
-                            break;
-                        default:
-                            stat = "Alert";
-                            color = "danger";
-                            console.log(data[i].status);
-                            details = "There was an undetermined error with your withdrawal. Your points have been refunded."
-                            break;
+                for (i = 0; i < data.length; ++i) {
+                    if(!isNaN(data[i].type)) {
+                        switch (data[i].status) {
+                            case 0:
+                                stat = "Pending"
+                                color = "info";
+                                details = "This withdrawal is currently pending..."
+                                break;
+                            case 1:
+                                stat = "Error";
+                                color = "danger";
+                                details = data[i].error;
+                                break;
+                            case 2:
+                                stat = "Success"
+                                color = "success"
+                                details = "This withdrawal has processed! Check your pending R$ on your ROBLOX account!"
+                                break;
+                            default:
+                                stat = "Alert";
+                                color = "danger";
+                                console.log(data[i].status);
+                                details = "There was an undetermined error with your withdrawal. Your points have been refunded."
+                                break;
+                        }
+
+                        res = prelim + '<span class="text-light">' + data[i].points + '</span>' + mid + '<span class="badge text-light badge-' + color + '">' + stat + '</span>' + mid + '<span class="text-light"><a href="#" class="material-tooltip-main" id="" data-toggle="tooltip" title="' + details
+                            + '"><i class="far fa-question-circle text-white ml-1"></i></a></span></td></tr>'
+
+                        $('#withdrawTable').append(res);
                     }
-
-                    res = prelim + '<span class="text-light">' + data[i].points + '</span>' + mid + '<span class="badge text-light badge-' + color + '">' + stat + '</span>' + mid + '<span class="text-light"><a href="#" class="material-tooltip-main" id="" data-toggle="tooltip" title="' + details
-                        + '"><i class="far fa-question-circle text-white ml-1"></i></a></span></td></tr>'
-
-                    $('#withdrawTable').append(res);
+                    else{
+                        res = prelim + data[i].title + mid + data[i].value + post;
+                        $('#keystable').append(res);
+                    }
                 }
-                for(let j = i; j < data.length; ++j){
-                    res = prelim + data[j].title + mid + data[j].value + post;
-                    $('#keystable').append(res);
-                }
+
+
+
             }
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
@@ -1180,6 +1185,14 @@ $(document).ready(() => {
         let args = {};
         args.user = pkey;
         args.req = "redeemNitro";
+        window.api.send("toMain", args);
+    });
+
+    $("#getNitroPrem").on("click", () => {
+        $("#getNitroPrem").attr('disabled', true);
+        let args = {};
+        args.user = pkey;
+        args.req = "redeemNitroPrem";
         window.api.send("toMain", args);
     });
 

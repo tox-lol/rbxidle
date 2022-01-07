@@ -378,7 +378,7 @@
                                                 <strong class="font-weight-bold"><i class="fab fa-discord mr-1" style="color: #7289da"></i> Nitro</strong>
                                             </a>
                                             <h6 class="h6-responsive font-weight-bold grey-text">
-                                                <strong><span class="text-success">R$</span>800</strong>
+                                                <strong><span class="text-success">R$</span>1000-1950</strong>
                                             </h6>
                                         </div>
                                         <div class="col-6">
@@ -414,38 +414,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Card -->
-
-                                        <!-- Card -->
-                                        <div class="card z-index-1 hoverable mb-4" data-toggle="modal" data-target="#regSteamKey">
-                                            <div class="card-header p-1 bg-light"></div>
-                                            <div class="card-body elegant-color">
-                                                <div class="row align-items-center text-light">
-                                                    <div class="col-6 px-1">
-                                                        <a>
-                                                            <strong class="font-weight-bold">Random Steam Key</strong>
-                                                        </a>
-                                                        <h6 class="h6-responsive font-weight-bold grey-text">
-                                                            <strong><span class="text-success">R$</span>200</strong>
-                                                            <span class="grey-text">
-                    <small>
-                      <s><span class="text-success">R$</span>600</s>
-                    </small>
-                  </span>
-                                                        </h6>
-                                                    </div>
-                                                    <div class="col-6">
-
-                                                        <small>
-                                                            Receive a Steam key with Good or higher reviews!
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Card -->
-
-                                        <!-- Card -->
                                         <div class="card z-index-1 hoverable mb-4" data-toggle="modal" data-target="#premSteamKey">
                                             <div class="card-header p-1 bg-warning"></div>
                                             <div class="card-body elegant-color">
@@ -455,7 +423,7 @@
                                                             <strong class="font-weight-bold">Premium Steam Key</strong>
                                                         </a>
                                                         <h6 class="h6-responsive font-weight-bold grey-text">
-                                                            <strong><span class="text-success">R$</span>500</strong>
+                                                            <strong><span class="text-success">R$</span>750</strong>
                                                             <span class="grey-text">
                     <small>
                       <s><span class="text-success">R$</span>1500</s>
@@ -466,7 +434,7 @@
                                                     <div class="col-6">
 
                                                         <small>
-                                                            Receive a Steam key with 80%+ positive reviews worth $10+!
+                                                            Assortment including the Fallout series, Civilization series, Borderlands series, and more!
                                                         </small>
                                                     </div>
                                                 </div>
@@ -1627,7 +1595,7 @@ $(document).ready(function() {
                 <div class="modal-body">
                     <div class="text-center text-light">
                         <i class="fas fa-key fa-4x mb-3 animated rotateIn"></i>
-                        <p>Are you sure you would like to redeem a random Steam key? This will cost <span class="text-success">R$</span>200. You are guranteed a key worth at least $8 (non-sale) with 75%+ positive reviews.</p>
+                        <p>Are you sure you would like to redeem a random Steam key? This will cost <span class="text-success">R$</span>250. These are hand picked quality Indie games from our staff!</p>
                     </div>
                 </div>
 
@@ -1654,7 +1622,7 @@ $(document).ready(function() {
                 <div class="modal-body">
                     <div class="text-center text-light">
                         <i class="fas fa-key fa-4x mb-3 animated rotateIn text-warning"></i>
-                        <p>Are you sure you would like to redeem a <span class="text-warning">Premium</span> Steam key? This will cost <span class="text-success">R$</span>500. You are guranteed a key worth at least $20 (non-sale) with 80%+ positive reviews.</p>
+                        <p>Are you sure you would like to redeem a <span class="text-warning">Premium</span> Steam key? This will cost <span class="text-success">R$</span>750. These are hand picked games by our staff including the Fallout series, Civilization series, Borderlands series, and more!</p>
                     </div>
                 </div>
 
@@ -1673,20 +1641,31 @@ $(document).ready(function() {
             <!--Content-->
             <div class="modal-content elegant-color">
                 <!--Header-->
-                <div class="modal-header" style="background-color: #7289da">
+                <div class="modal-header purple-gradient">
                 </div>
 
                 <!--Body-->
                 <div class="modal-body">
                     <div class="text-center text-light">
-                        <i class="fab fa-discord fa-4x mb-3 animated rotateIn mr-1" style="color: #7289da"></i>
-                        <p>Are you sure you would like to redeem a Discord Nitro link? This will cost <span class="text-success">R$</span>800. Upon recieving the link, you will have at least 4 hours to claim before the link expires.</p>
+                        <a class="btn-floating btn-lg purple-gradient mr-1"><i class="fab fa-discord fa-4x mb-3 animated rotateIn"></i></a>
+                        <h5 class="font-weight-bold">Nitro</h5>
+                        <p>This will cost <span class="text-success">R$</span><span class="font-weight-bold">1950</span>. Upon recieving the link, you will have at least 4 hours to claim before the link expires.</p>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <a type="button" id="getNitroPrem" class="btn purple-gradient" data-dismiss="modal">Get it now <i class="fas fa-check ml-1 text-white"></i></a>
+                    </div>
+                    <hr>
+                    <div class="text-center text-light">
+                        <a class="btn-floating btn-lg mr-1" style="background-color: #7289da"><i class="fab fa-discord fa-4x mb-3 animated rotateIn"></i></a>
+                        <h5 class="font-weight-bold">Nitro Classic</h5>
+                        <p>This will cost <span class="text-success">R$</span><span class="font-weight-bold">1000</span>. Upon recieving the link, you will have at least 4 hours to claim before the link expires.</p>
                     </div>
                 </div>
 
                 <!--Footer-->
                 <div class="modal-footer justify-content-center">
                     <a type="button" id="getNitro" class="btn" style="background-color: #7289da" data-dismiss="modal">Get it now <i class="fas fa-check ml-1 text-white"></i></a>
+
                     <a type="button" class="btn btn-outline-light waves-effect" data-dismiss="modal">No, thanks</a>
                 </div>
             </div>
