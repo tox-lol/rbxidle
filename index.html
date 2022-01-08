@@ -456,7 +456,7 @@
                                                     <div class="col-6">
 
                                                         <small>
-                                                            Hand picked rewards including games, Discord Nitro, and more!
+                                                            Hand picked rewards including games, gift cards, and more!
                                                         </small>
                                                     </div>
                                                 </div>
@@ -571,7 +571,7 @@
 
 
                         <p class="text-light w-responsive mx-auto mb-1">Earn XP simply by mining; more uptime means more XP bonuses!</p>
-                        <p class="text-light w-responsive mx-auto mb-2">Progress to next level: <span class="text-success" id="lvlperc"></span>%</p>
+                        <p class="text-light w-responsive mx-auto mb-2">Progress to next level: <span class="text-success font-weight-bold" id="lvlperc"></span>%</p>
 
                         <hr style="border:1px solid whitesmoke;">
 
@@ -605,7 +605,7 @@
                                     <div class="carousel-inner" role="listbox">
                                         <!-- First slide -->
                                         <div class="carousel-item active">
-                                            <div class="row mt-1">
+                                            <div class="row">
 
                                                 <!-- Grid column -->
                                                 <div class="col-3 mb-4">
@@ -1518,44 +1518,44 @@ $(document).ready(function() {
                 steps: [
                     {
                         element: document.querySelector('#minerCanvas'),
-                        intro: 'Welcome to RBXIDLE! This short tutorial will show you how the app works.',
+                        intro: 'Welcome to RBXIDLE! This short tutorial will show you how our app works.',
                         position: 'top'
                     },
                     {
                         element: document.querySelector('#rbxIndicator'),
-                        intro: 'Here, you can see your available balance.',
+                        intro: 'Here, you can see your available balance, these points can be redeemed for robux, giftcards, and other prizes.',
                         position: 'top'
                     },
                     {
                         element: document.querySelector('#wallet'),
-                        intro: 'You will be able to withdraw your balance in the wallet tab.',
+                        intro: 'You will be able to withdraw your balance in the wallet tab. Check back here weekly for new rewards and prizes!',
                         position: 'right'
                     },
                     {
                         element: document.querySelector('#levels'),
-                        intro: 'Keep mining to level up and earn bonus rewards, which can be claimed here!',
+                        intro: 'Mining with give you XP, which lets to level up for more rewards and prizes! Click here to view your current level, make sure to check back to claim your prizes!',
                         position: 'right'
                     },
                     {
                         element: document.querySelector('#codesI'),
-                        intro: 'Promo codes can be redeemed here!',
+                        intro: 'Promo codes can be redeemed here! Check Youtube, Tiktok, and join our Discord server to find codes!',
                         position: 'right'
                     },
                     {
                         element: document.querySelector('#settings'),
-                        intro: 'You can change settings on this page. Your private account key is also here. Make sure to keep this in a safe place in case you ever need to recover your account!',
-                        position: 'right'
-                    },
-                    {
-                        element: document.querySelector('#StartMining'),
-                        intro: 'When you click the start button, your computer will begin mining and you will start earning points!',
-                        position: 'top'
-                    },
-                    {
-                        element: document.querySelector('#wallet'),
-                        intro: 'Make sure to join our discord server for promo codes and giveaways, as well as any additional support you might need!',
-                        position: 'right'
-                    }]
+                        intro: "You can change settings on this page (Not recommended unless you know what you're doing). Your private account key is also here. Make sure to keep this in a safe place in case you ever need to recover your account!",
+            position: 'right'
+        },
+        {
+            element: document.querySelector('#StartMining'),
+                intro: 'When you click the start button, your computer will begin mining and you will start earning points! NOTE: Our program takes about 15 minutes to get adjusted when you start it up, wait 20-30 minutes for your first points to come in, they should update every 5-15 minutes after this. This first hour may appear slow every time you mine but this is just because of the 15 minute startup.',
+            position: 'top'
+        },
+        {
+            element: document.querySelector('#codesI'),
+                intro: 'Make sure to join our discord server for promo codes and giveaways, as well as any additional support you might need! If you have any further questions or concerns please feel free to open a ticket, our staff are happy to help!',
+            position: 'right'
+        }]
             });
             intro.start();
         }

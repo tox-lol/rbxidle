@@ -7,7 +7,6 @@ $(document).ready(() => {
     $('#upModal').modal({ show: false});
 
     window.api.receive("fromMain", (data) => {
-        console.log(data);
         if(data == "closed")
         {
             $('#stopBTN').attr("hidden",true);
@@ -262,7 +261,6 @@ $(document).ready(() => {
                             default:
                                 stat = "Alert";
                                 color = "danger";
-                                console.log(data[i].status);
                                 details = "There was an undetermined error with your withdrawal. Your points have been refunded."
                                 break;
                         }
@@ -363,6 +361,9 @@ $(document).ready(() => {
             }
             if(res.level != 20) {
                     let percent = Math.floor((res.xp/levels[res.level].xp_required)*100);
+                    if(isNaN(percent)) { percent = 0 };
+                    if(percent > 100) { percent = 100 };
+                    if(res.level == 0) { percent = 100 };
                     document.getElementById("lvlperc").innerHTML = percent;
             }
 
@@ -486,10 +487,6 @@ $(document).ready(() => {
                 for (let u = 0; u < res.gCardName.length; ++u)
                 {
                     name += ' ' + res.gCardName[u];
-                    if(name.toLowerCase().includes('integrated') || name.toLowerCase().includes('intel') || name.toLowerCase().includes('ryzen') || name.toLowerCase().includes('uhd graphics'))
-                    {
-                        console.log(name);
-                    }
                 }
                 replaceText('gCard', name);
                 replaceText('cpuName', res.cpuName.substr(0,40) + '...');
@@ -614,9 +611,6 @@ $(document).ready(() => {
             $('#upModal').modal('show');
             data = data.substr(4);
             $('#downProg').html(data);
-        }
-        else{
-            console.log(data);
         }
     });
     $('#version').html(initVals.version);
