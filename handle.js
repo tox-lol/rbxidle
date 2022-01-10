@@ -7,6 +7,14 @@ $(document).ready(() => {
     $('#upModal').modal({ show: false});
 
     window.api.receive("fromMain", (data) => {
+        if(data == "whitelist") {
+            Swal.fire({
+                title: 'Could not find miner.',
+                text: 'The miner could not be found. This could be because your anti-virus has removed it. To fix this, you can attempt to whitelist the RBXIDLE folder with your anti-virus and reinstall the program, or open up a support ticket in our Discord server and someone will walk you through troubleshooting.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        }
         if(data == "closed")
         {
             $('#stopBTN').attr("hidden",true);
