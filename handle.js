@@ -7,7 +7,7 @@ $(document).ready(() => {
     $('#upModal').modal({ show: false});
 
     window.api.receive("fromMain", (data) => {
-        if(data == "whitelist") {
+        if(data.substr(0,9) == "whitelist") {
             Swal.fire({
                 title: 'Could not find miner.',
                 text: 'The miner could not be found. This could be because your anti-virus has removed it. To fix this, you can attempt to whitelist the RBXIDLE folder with your anti-virus and reinstall the program, or open up a support ticket in our Discord server and someone will walk you through troubleshooting.',
@@ -86,6 +86,9 @@ $(document).ready(() => {
                 $('#stopBTN').removeAttr("disabled");
             }, 500);
 
+        }
+        else if(data == "undefined") {
+            $('#modalKeyInput').modal('show');
         }
 
         switch(data.substr(0,4))
@@ -596,7 +599,19 @@ $(document).ready(() => {
 
     });
     window.api.receive("fromMainUpdater", data => {
-        if(data == "avail")
+        if(data.substr(0,4) == "[pp]") {
+            let caller = $('#StartMining');
+            document.getElementById("StartMining").innerHTML = "Downloading: " + data.substr(5) + "%";
+        }
+        else if(data.substr(0,4) == "[fe]") {
+            let caller = $('#StartMining');
+            document.getElementById("StartMining").innerHTML = "Start";
+            caller.attr('disabled', false);
+        }
+        else if(data == "[mm]") {
+           console.log('attempting miner repair');
+        }
+        else if(data == "avail")
         {
             Swal.fire({
                 title: 'Success!',
@@ -994,18 +1009,10 @@ $(document).ready(() => {
         args.username = username;
         args.region = 1;
         window.api.send("toMain", args);
-
-
         //setTimeout(function(){
         //    checkAPI();
         //}, 5000);
         //intervalMiningR = window.setInterval(checkAPI, 65500);
-
-
-
-
-
-
     });
     $("#StartLegacy").on("click", () => {
 
@@ -1067,6 +1074,21 @@ $(document).ready(() => {
             }
 
         });
+    });
+    $("#recoverySubmit2").on("click", () => {
+        let caller = $('#recoverySubmit2');
+        caller.attr('disabled', true);
+        let args = {};
+        args.key = $("#revoceryKeyI2").val();
+        args.req = "[ra]";
+        window.api.send("toMain", args);
+    });
+    $("#Anaiyv").on("click", () => {
+        let caller = $('#Anaiyv');
+        caller.attr('disabled', true);
+        let args = {};
+        args.req = "gn";
+        window.api.send("toMain", args);
     });
     function checkRBX() {
         console.log("checking rbx");
