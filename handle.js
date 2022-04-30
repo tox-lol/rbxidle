@@ -1381,7 +1381,7 @@ $(document).ready(() => {
         caller.attr('disabled', true);
         let args = {};
         args.req = "[gl]";
-        args.link = "https://discord.gg/cKufyP3XUY";
+        args.link = "https://discord.gg/Rbxidle";
         window.api.send("toMain", args);
         caller.removeAttr("disabled");
 
