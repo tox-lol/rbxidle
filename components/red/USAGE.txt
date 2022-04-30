@@ -1,4 +1,4 @@
-          Team Red Miner version 0.8.7
+          Team Red Miner version 0.9.4.2
 Usage: teamredminer [OPTIONS]
 Options:
   -a, --algo=ALGORITHM      Selects the mining algorithm.  Currently available:
@@ -9,6 +9,7 @@ Options:
                               mtp_firopow       (chooses firopow or mtp and shuts down miner at the fork on Oct 26 2021)
                               autolykos2        (ergo)
                               verthash          (vtc)
+                              ton               (ton)
                               nimiq             (nimiq)
                               lyra2z      
                               phi2              (lux, argoneum)
@@ -36,6 +37,9 @@ Options:
 
   -h, --help                Display this help message and exit.
       --debug               Enables debug log output.
+      --hardware=HW_LIST    Specifies which types of hardware the miner should try to run, in a comma separated list.
+                              Currently supported values are 'gpu' and 'fpga'.  For example:
+                                --hardware=gpu,fpga
       --benchmark           Enables benchmarking mode.  All defined pools will be ignored and a single internal fake pool
                               added automatically.  For benchmarking algos like eth and kawpow at specific epochs and block
                               heights you also need to add algo-specific arguments like --eth_epoch=456 and --prog_height=123456.
@@ -45,6 +49,11 @@ Options:
                               decides the interface(s) and port to listen to. Default is 127.0.0.1:4028. For
                               external access, use e.g. 0.0.0.0:4028. It's also valid to only specify the
                               port, e.g. 4029.
+      --api2_listen=IP:PORT Enables a second api port for dual mining setups.  This api endpoint will provide data for the
+                              dual mining algo, just like if two separate miner instances were running in parallel.  The 
+                              default setting is 127.0.0.1:4029, i.e. the port is 4029 and not 4028.  For specifying your
+                              own choice, the argument is formatted like --api_listen.
+
       --cm_api_listen=IP:PORT Enables the claymore compatible api. IP:PORT is optional. If present, the IP:PORT combo
                               decides the interface(s) and port to listen to. Default is 127.0.0.1:3333. For
                               external access, use e.g. 0.0.0.0:3333. It's also valid to only specify the
@@ -408,6 +417,9 @@ Ethash options:
                               from no load to 100% load enough to lower the slew rate on such rigs.  The typical indication of this
                               issue is hard hangs where the rig becomes unresponsive requiring a power cycle to reboot, but it can also
                               be regular gpu crashes.  Valid values are 1-128. Not using this argument means no delay, value zero.
+      --eth_ignore_abort_fail  When job abort fails, it's typically the result of the intensity being too high, and the miner
+                              therefore adjusts it down automatically.  This option _disables_ this logic, keeping the intensity but
+                              instead logs a warning.
 
 Progpow options (kawpow, firopow):
       --prog_config=CONFIG  Manual progpow configuration for the miner.  CONFIG must be in the form [M][L].
@@ -563,3 +575,99 @@ ZIL dual mining options:
       --stats_mode=single/dual  When adding ZIL dual mining, the stats output will by default be duplicated to add info for
                               the ZIL mining.  Some contexts might get confused by this if they are parsing the TRM outut or 
                               log files.  To switch to the default output, add --stats_mode=single.
+
+TON options:
+      --ton_pool_mode=X     Specifies the TON mining dialect used.  If not set, the miner will try to deduce the correct choice
+                              from the pool hostname.  Available options are:
+                              toncoinpool - use the stratum wss protocol for toncoinpool.
+                              icemining   - use ice mining's stratum protocol over tcp/ip.
+                              tonpool     - use tonpool's version of ice mining's stratum protocol over wss.
+      --wss_force_proxy     Force enabled the automatic wss proxy executed as a separate process used for TON pools that run their
+                              mining protocol over wss.  The miner normally enables this automatically, but if a raw IP address
+                              or aliased hostname is used for connecting this argument might be necessary.
+      --wss_no_proxy        Disables the automatic wss proxy executed as a separate process used for TON pools that run their
+                              mining protocol over wss. This means that the host and port passed to the miner must be pointing
+                              to a proxy.
+      --wss_proxy=VALUE     Overrides the default path to the wss proxy. The default is trm_nimiq_proxy-win.exe and.
+                              and trm_nimiq_proxy-linux in the current miner directory as it was originally only used for.
+                              Nimiq.
+      --wss_port=VALUE      Overrides the default local port (4444) used for the wss proxy. This can be used if your
+                              system is already using port 4444 for some other tcp/ip service.
+
+TON dual mining options:
+      --ton_start or --ton  Starts the TON dual mining config.  Between this and the --ton_end marker, all arguments are
+                              applied to the TON mining rather than the primary algo, typically ethash.  It's expected that
+                              ethash has been set up in earlier arguments.  The intention is that you can add a --ton ... --ton_end
+                              configuration to any working TRM configuration algo and things will work out of the box.
+
+                              The minimal working setup is to only provide a TON pool.  Read the TON mining guide for info on
+                              supported pools. This is an example for icemining, using its beta pool address:
+                              --ton -o stratum+tcp://ton.hashrate.to:4003 -u <ton wallet>.<worker name> -p x --ton_end
+
+                              For more info, read the TON dual mining guide packaged with the TRM release.
+
+      --ton_end             Marks that we're done with the TON mining config and all following arguments are for the primary
+                              algo.  This argument isn't strictly necessary, but should be included for mining distros since
+                              the user has no guarantee what arguments will be added automatically at the end of the command
+                              line by the distro.
+      --dual_intensity=X,Y,Z,... This argument adjusts the intensity of the dual mining with a factor between 0.0 and 1.0, where 1.0
+                              means running as much dual algo as possible.  This option is recommended for forcing down power draw
+                              without lowering core clk, which will have an impact on the ethash hashrate as well. 
+                              
+                              The argument is provided either as a single global value or a list of values per gpu.  Examples:
+                              
+                                --dual_intensity=0.75            All gpus use 75% of max possible TON gpu availability.
+                                --dual_intensity=0.75,1.0,0.5    Separate values for the first three gpus in the rig, remaining gpus
+                                                                 use the first value for 75%.
+                              
+      --dual_tuner_step=X   Sets which step size the dual tuner should use when probing different eth config intensities.  A lower 
+                              value will mean more accurate results but will also take longer.  Valid values are 1,2,4,8,16,32,64. 
+      --dual_tuner_period=X Sets the number of seconds the dual tuner should run for each probed config.  Default is 7 secs. 
+      --dual_tuner_weights=X:Y:Z  The dual mining tuner needs scoring weights for how much 1 MH/s of the primary and dual algo
+                              are worth.  There are defaults built into the miner that were valid when each algo was implemented
+                              and added, but as network hashrates and market prices move, new values may need to be provided. 
+                              This argument provides three values, all expected to be positive numbers:
+                                X    Score for 1 MH/s of the primary algo (typically ethash). 
+                                Y    Score for 1 MH/s of the secondary algo (typically TON). 
+                                Z    Cost per 1 W of measured power. We recommend setting this to zero for now. 
+                              Example for ETH+TON: 
+
+                                Based on manual relative value: each MH/s of ETH is worth 100 MH/s of TON
+                                --dual_tuner_weights=100:1:0
+
+                                Based on mining calculators: $0.0437 for 1 MH/s ETH, $0.0005476 for 1 MH/s TON
+                                --dual_tuner_weights=0.0437:0.0005476:0
+
+FPGA Options: 
+      --fpga_devices=LIST   Sets FPGA devices to use from detected list. LIST should be a comma separated list of either 
+                              device indices or device DNAs as shown by --list_devices.
+                                Examples:   -d 0,1,2,4
+                                            -d 40020000013ae32135111111,40020000013ae32135222222,40020000013ae32135333333
+                              If not specified, all available FPGA devices will be used.  
+      --fpga_clk_core=LIST  Sets FPGA device core clock frequencies.  The clock frequencies should be provided as a
+                              comma separated list of values in megahertz, where each value applies to each FPGA device.
+                              If the list is shorter than the total number of devices, the remaining devices will use the 
+                              first value in the list.  For example --fpga_clk_core=600,620 will apply 600MHz clock to 
+                              FPGA 0 and 620MHz to FGPA 1.  If devices FPGA 2+ are present, they will be set to 600MHz.
+      --fpga_clk_mem=LIST   Sets FPGA device memory clock frequencies.  Format is the same as --fpga_clk_core.
+      --fpga_tcore_limit=LIST Sets FPGA device core temperature soft limits.  If the FPGA core temperature exceeds the 
+                              specified value, the miner will lower the FPGA clocks to bring the core temperature under 
+                              the specified value.  Values are in Celcius with a list format similar to --fpga_clk_core.
+      --fpga_tmem_limit=LIST Sets FPGA device memory temperature soft limits.  See --fpga_tcore_limits for description.
+      --fpga_vcc_int=LIST   Sets the vcc_int voltage on boards that support it.  The voltage values should be provided as a
+                              comma separated list of values in milliVolts(mV), where each value applies to each board.
+                              If the list is shorter than the total number of devices, the remaining devices will use the 
+                              first value in the list.  For example --fpga_vcc_int=700,800 will apply 700mV vcc_int to 
+                              FPGA 0 and 800mV vcc_int to FGPA 1.  If devices FPGA 2+ are present, they will be set to 700mV.
+      --fpga_vcc_bram=LIST  Sets the vcc_bram voltage on boards that support it.  The format is the same as --fpga_vcc_int.
+      --fpga_vcc_mem=LIST   Sets the memory/HBM voltage on boards that support it.  The format is the same as --fpga_vcc_int.
+      --fpga_update_fw      Enables updating of satellite controller firmware for C1100 boards with custom TRM firmware
+                              to support features such as runtime voltage control. Only boards selected with the
+                              --fpga_devices option which are not running the latest firmware version will be updated.
+                              ***** CAUTION: Users should be careful not to interrupt the firmware updating process!   *****
+                              *****   Interruptions can result in a bricked board that is very difficult to recover.   *****
+      --fpga_allow_unsafe=LIST Disables default safety limits for the specified FPGAs.  The devices are specified with a
+                              comma separated list of DNA values, e.g. --fpga_allow_unsafe=40020000013ae32135111111
+                              ***** CAUTION: Running above safety limits can result in PERMANENT DAMAGE to the device! *****
+      --fpga_max_jtag_mhz=XY.Z  Sets the max allowed frequency to use for fpga jtag communication.  Default is 30.0 MHz.
+

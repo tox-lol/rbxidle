@@ -1,4 +1,4 @@
-# T-Rex NVIDIA GPU miner (Ethash / Autolykos2 / Kawpow / Octopus / Firopow / MTP)
+# T-Rex NVIDIA GPU miner (Ethash / Autolykos2 / Kawpow / Blake3 / Octopus / Firopow / MTP)
 
 ## Overview
 
@@ -16,6 +16,7 @@ Full list of command line options:
 ```
     -a, --algo                     Specify the hash algorithm to use.
                                    autolykos2
+                                   blake3
                                    etchash
                                    ethash
                                    firopow
@@ -48,18 +49,29 @@ Full list of command line options:
         --low-load                 Low load mode (default: 0). 1 - enabled, 0 - disabled.
                                    Reduces the load on the GPUs if possible. Can be set to a comma separated string to enable
                                    the mode for a subset of the GPU list (eg: --low-load 0,0,1,0)
-        --lhr-algo                 Specify the second algorithm to use in LHR unlock dual mining mode.
-        --lhr-coin                 Set coin name for --lhr-algo.
+        --dual-algo                Second algorithm to use in dual mining mode.
+        --dual-algo-mode           Controls GPU behaviour in dual mining mode (default: a12).
+                                   Format: <algo>:<tuning coefficient>
+                                   "<algo>" can be one of: "a1" (first algorithm), "a2" (second algorithm), "a12" (both - dual mining)
+                                   "<tuning coefficient>" is optional, and can be either
+                                         "rXX" ("dual ratio" coefficient set to XX), or
+                                         "rXX:lrYY" ("dual ratio" coefficient set to XX, "LHR dual ratio" coefficient set to YY), or
+                                         "hXX" (primary algo hashrate percentage XX).
+                                   See dual mining guide for more details.
+        --profit-per-mh            Estimated profitability of the algorithms in dual mining mode per 1MH of hashrate.
+                                   Used for fine-tuning algo1/algo2 proportion, the miner will try to maximise the earnings.
+                                   Format: <profit_algo1>:<profit_algo2>.
+                                   Example: --profit-per-mh 0.0516:0.0012
         --lhr-tune                 [Ethash, Autolykos2] LHR tuning value that indicates the percentage of the full speed the miner
                                    tries to achieve for LHR cards (default: -1). Range from 10 to 95.
                                    -1 - auto-mode (LHR tune is set to 74 (or 68 in low power mode) for LHR cards and 0 for non-LHR)
                                     0 - disabled (use for non-LHR cards)
-                                   30 - recommended starting value for most LHR cards in LHR unlock dual mining mode (see --lhr-algo)
+                                   30 - recommended starting value for most LHR cards in LHR unlock dual mining mode (see --dual-algo)
                                    68 - recommended starting value for most LHR cards in low power mode (see --lhr-low-power)
                                    74 - recommended starting value for most LHR cards
                                    Can be set for each GPU separately, e.g.
                                    "lhr-tune": "0,0,74.5,0" - this will set LHR tuning value to 74.5 for the third GPU.
-        --lhr-autotune-mode        [Ethash, Autolykos2] LHR auto-tune mode (default: full). Valid values:
+        --lhr-autotune-mode        [Ethash, Autolykos2] LHR auto-tune mode (default: down). Valid values:
                                    off  - auto-tune is disabled. LHR tune value is fixed during mining, and will not change
                                           no matter how often LHR lock is detected
                                    down - LHR tune value will decrease if the miner detects LHR lock
@@ -131,8 +143,8 @@ Full list of command line options:
         --temperature-color        Set core temperature color for GPUs stat. Example: 55,65 - it means that
                                    temperatures above 55 will have yellow color, above 65 - red color. (default: 67,77)
         --temperature-color-mem    Set memory temperature color for GPUs stat. (default: 80,100)
-        --temperature-limit        GPU shutdown temperature. (default: 0 - disabled)
-        --temperature-start        GPU temperature to enable card after disable. (default: 0 - disabled)
+        --temperature-limit        GPU shutdown core temperature. (default: 0 - disabled)
+        --temperature-start        GPU core temperature to enable card after disable. (default: 0 - disabled)
 
         --api-bind-http            IP:port for the miner API via HTTP (default: 127.0.0.1:4067). Set to 0 to disable.
                                    For external access set IP to 0.0.0.0, in which case setting "--api-read-only" is
@@ -280,22 +292,27 @@ Full list of command line options:
 ### Examples
 * **LHR-unlock-dual-ETH+ERGO**</br>
 ```
-t-rex -a ethash --lhr-algo autolykos2 -o stratum+tcp://eu1.ethermine.org:4444 -u 0x1f75eccd8fbddf057495b96669ac15f8e296c2cd -p x -w rig0 --url2 stratum+tcp://pool.woolypooly.com:3100 --user2 9gpNWA3LVic14cMmWHmKGZyiGqrxPaSEvGsdyt7jt2DDAWDQyc9.rig0 --pass2 x
+t-rex -a ethash --dual-algo autolykos2 -o stratum+tcp://eu1.ethermine.org:4444 -u 0x1f75eccd8fbddf057495b96669ac15f8e296c2cd -p x -w rig0 --url2 stratum+tcp://pool.woolypooly.com:3100 --user2 9gpNWA3LVic14cMmWHmKGZyiGqrxPaSEvGsdyt7jt2DDAWDQyc9.rig0 --pass2 x
 ```
 
 * **LHR-unlock-dual-ETH+FIRO**</br>
 ```
-t-rex -a ethash --lhr-algo firopow -o stratum+tcp://pool.woolypooly.com:3096 -u 0x1f75eccd8fbddf057495b96669ac15f8e296c2cd -p x -w rig0 --url2 stratum+tcp://firo.2miners.com:8181 --user2 aBR3GY8eBKvEwjrVgNgSWZsteJPpFDqm6U.rig0 --pass2 x
+t-rex -a ethash --dual-algo firopow -o stratum+tcp://pool.woolypooly.com:3096 -u 0x1f75eccd8fbddf057495b96669ac15f8e296c2cd -p x -w rig0 --url2 stratum+tcp://firo.2miners.com:8181 --user2 aBR3GY8eBKvEwjrVgNgSWZsteJPpFDqm6U.rig0 --pass2 x
 ```
 
 * **LHR-unlock-dual-ETH+RVN**</br>
 ```
-t-rex -a ethash --lhr-algo kawpow -o stratum+tcp://eth.2miners.com:2020 -u 0x1f75eccd8fbddf057495b96669ac15f8e296c2cd -p x -w rig0 --url2 stratum+tcp://rvn.2miners.com:6060 --user2 RBX1G6nYDMHVtyaZiQWySMZw1Bb2DEDpT8.rig0 --pass2 x
+t-rex -a ethash --dual-algo kawpow -o stratum+tcp://eth.2miners.com:2020 -u 0x1f75eccd8fbddf057495b96669ac15f8e296c2cd -p x -w rig0 --url2 stratum+tcp://rvn.2miners.com:6060 --user2 RBX1G6nYDMHVtyaZiQWySMZw1Bb2DEDpT8.rig0 --pass2 x
 ```
 
 * **LHR-unlock-dual-ETH+CFX**</br>
 ```
-t-rex -a ethash --lhr-algo octopus -o stratum+ssl://eth-us-east.flexpool.io:5555 -u 0x1f75eccd8fbddf057495b96669ac15f8e296c2cd -p x -w rig0 --url2 stratum+tcp://pool.woolypooly.com:3094 --user2 cfx:aajauymfc0cpd4aj91wmfyd150avfg3fmym9j2xrh8.rig0 --pass2 x
+t-rex -a ethash --dual-algo octopus -o stratum+ssl://eth-us-east.flexpool.io:5555 -u 0x1f75eccd8fbddf057495b96669ac15f8e296c2cd -p x -w rig0 --url2 stratum+tcp://pool.woolypooly.com:3094 --user2 cfx:aajauymfc0cpd4aj91wmfyd150avfg3fmym9j2xrh8.rig0 --pass2 x
+```
+
+* **ETH+ALPH**</br>
+```
+t-rex -a ethash --dual-algo blake3 -o stratum+tcp://eth.2miners.com:2020 -u 0x1f75eccd8fbddf057495b96669ac15f8e296c2cd -p x -w rig0 --url2 stratum+tcp://de.alephium.herominers.com:1199 --user2 1qUuxVuXN2Pk4nnYTbL4qihjLWyRkVMQVYQDAajCcuPq --pass2 x
 ```
 
 * **ERGO-nanopool**</br>
@@ -388,6 +405,16 @@ t-rex -a octopus -o stratum+tcp://pool.woolypooly.com:3094 -u cfx:aajauymfc0cpd4
 t-rex -a octopus -o stratum+tcp://cfx-eu1.nanopool.org:17777 -u cfx:aajauymfc0cpd4aj91wmfyd150avfg3fmym9j2xrh8.rig0/your@email.org -p x
 ```
 
+* **ALPH-woolypooly**</br>
+```
+t-rex -a blake3 -o stratum+tcp://pool.woolypooly.com:3106 -u 1qUuxVuXN2Pk4nnYTbL4qihjLWyRkVMQVYQDAajCcuPq -p x -w rig0
+```
+
+* **ALPH-herominers**</br>
+```
+t-rex -a blake3 -o stratum+tcp://de.alephium.herominers.com:1199 -u 1qUuxVuXN2Pk4nnYTbL4qihjLWyRkVMQVYQDAajCcuPq -p x -w rig0
+```
+
 * **RVN-2miners**</br>
 ```
 t-rex -a kawpow -o stratum+tcp://rvn.2miners.com:6060 -u RBX1G6nYDMHVtyaZiQWySMZw1Bb2DEDpT8.rig -p x
@@ -403,9 +430,9 @@ t-rex -a kawpow -o stratum+tcp://stratum.ravenminer.com:3838 -u RBX1G6nYDMHVtyaZ
 t-rex -a kawpow -o stratum+tcp://pool.woolypooly.com:55555 -u RBX1G6nYDMHVtyaZiQWySMZw1Bb2DEDpT8.rig -p x
 ```
 
-* **SERO-beepool**</br>
+* **SERO-serocash**</br>
 ```
-t-rex -a progpow --coin sero -o stratum+tcp://sero-pool.beepool.org:9515 -u JCbZnEb8XtWV814QWRpDcDxpQpXZXw4ARneAtwXNYdd3reuo4xQDcuZivopA761QnQyfMermHR9Mpi156F5n7ez9tv75Wt7vWbHXtuyZsQVWLbKNHnZgwcXbR2yZmbw89WT -p x -w rig0
+t-rex -a progpow --coin sero -o stratum+tcp://pool2.sero.cash:8808 -u JCbZnEb8XtWV814QWRpDcDxpQpXZXw4ARneAtwXNYdd3reuo4xQDcuZivopA761QnQyfMermHR9Mpi156F5n7ez9tv75Wt7vWbHXtuyZsQVWLbKNHnZgwcXbR2yZmbw89WT -p x -w rig0
 ```
 
 * **VBK-luckypool**</br>

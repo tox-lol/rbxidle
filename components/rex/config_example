@@ -14,7 +14,7 @@
     }
   ],
 
-  // "pools2" :  // pools for second algo specified with "lhr-algo" param
+  // "pools2" :  // pools for second algo specified with "dual-algo" params
   // [
   //  {
   //    "url" : "stratum+tcp://stratum.ravenminer.com:3838",
@@ -23,7 +23,14 @@
   //  }
   // ],
 
-  // "lhr-algo": "kawpow",
+  // Second algorithm to use in dual mining mode.
+  // "dual-algo": "blake3",
+
+  // Controls GPU behaviour in dual mining mode
+  // "dual-algo-mode": "a12",
+
+  // Estimated profitability of the algorithms in dual mining mode per 1MH of hashrate
+  // "profit-per-mh": "0.0516:0.0012",
 
   // Coin name. Helps avoid DAG rebuilds when switching back from a dev fee session.
   "coin" : "",
@@ -118,7 +125,7 @@
   // "lhr-tune": "0,0,74.5,0" - this will set LHR tuning value to 74.5 for the third GPU.
   "lhr-tune": -1,
 
-  // [Ethash, Autolykos2] LHR auto-tune mode (default: full). Valid values:
+  // [Ethash, Autolykos2] LHR auto-tune mode (default: down). Valid values:
   // off  - auto-tune is disabled. LHR tune value is fixed during mining, and will not change
   //        no matter how often LHR lock is detected
   // down - LHR tune value will decrease if the miner detects LHR lock

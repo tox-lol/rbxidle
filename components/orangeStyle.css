@@ -1,0 +1,243 @@
+
+:root{
+    --Color1: #2D3047
+}
+
+:root{
+    --Color2: #345D83
+}
+
+:root{
+    --Color3: #6B9AC4
+}
+
+:root{
+    --Color4: #A6A57A
+}
+
+/* Actual background to application */
+body {
+    background-color: var(--Color3);
+}
+
+/* Start mining GPU buttom */
+#StartMining {
+    background-color: var(--Color4) !important;
+}
+#StartMining2 {
+    background-color: var(--Color4) !important;
+}
+
+/* Start mining CPU buttom */
+#StartLegacy {
+    background-color: var(--Color4) !important;
+}
+
+/* Progress Bar */
+#ProgressBar {
+    background-color: var(--Color2);
+}
+#ProgressBackground {
+    background-color: var(--Color1) !important;
+}
+#ProgressB2 {
+    background-color: var(--Color1) !important;
+}
+
+/* Top Bar with Rbxidle Logo */
+#TopBar {
+    background-color: var(--Color2) !important;
+}
+
+#GraphicsCardBG {
+    background-color: var(--Color1) !important;
+}
+
+
+/* Chart background part */
+#lineChart1 {
+    background-color: var(--Color2) !important;
+}
+#ChartBg {
+    background-color: var(--Color2) !important;
+}
+#Chartbg1 {
+    background-color: var(--Color3);
+}
+
+/* Bg to part that shows balance */
+#Smallbg {
+    background-color: var(--Color1) !important;
+}
+#Smallbg1 {
+    background-color: var(--Color1) !important;
+}
+#MoneySymbol {
+    background-color: var(--Color2) !important;
+}
+
+/* Mining portion background*/
+#supMine1 {
+    background-color: var(--Color1) !important;
+}
+
+#supMine2 {
+    background-color: var(--Color1) !important;
+}
+
+/* Refresh Button Background */
+#refHardware {
+    background-color: var(--Color4) !important;
+}
+/*Recent Withdrawals */
+
+#RecentWithdrawal {
+    background-color: var(--Color2) !important;
+}
+#RecentWithdrawBelow {
+    background-color: var(--Color1) !important;
+}
+
+/* Withdrawal Tutorial Top */
+#WithdrawalTutorial1 {
+    background-color: var(--Color2) !important;
+}
+/* Withdrawal Video Background */
+#WithdrawalTutorial2 {
+    background-color: var(--Color1) !important;
+}
+
+/* Backgrounds to Prizes */
+#DiscordBG {
+    background-color: var(--Color1) !important;
+}
+#RobuxBG {
+    background-color: var(--Color1) !important;
+}
+#SteamKeysBG {
+    background-color: var(--Color1) !important;
+}
+#RewardsSpotlightBG {
+    background-color: var(--Color1) !important;
+}
+
+/* Levels Top Part */
+#LvlsBG {
+    background-color: var(--Color2) !important;
+}
+
+/* Levels Arrow Buttons */
+#Arrow1 {
+    background-color: var(--Color4) !important;
+}
+#Arrow2 {
+    background-color: var(--Color4) !important;
+}
+
+/* Bottom Part LVL XP */
+#LevelXP {
+    background-color: var(--Color2) !important;
+}
+#LevelXPChart {
+    background-color: var(--Color2) !important;
+}
+
+/* Buttons at bottom to change lvls */
+#ChangeLvlTab1 {
+    background-color: var(--Color4) !important;
+}
+#ChangeLvlTab2 {
+    background-color: var(--Color4) !important;
+}
+#ChangeLvlTab3 {
+    background-color: var(--Color4) !important;
+}
+#ChangeLvlTab4 {
+    background-color: var(--Color4) !important;
+}
+#ChangeLvlTab5 {
+    background-color: var(--Color4) !important;
+}
+
+/* Code BG section */
+#DiscordBGCodes {
+    background-color: var(--Color1) !important
+}
+#RedeemCodeBG {
+    background-color: var(--Color1) !important;
+}
+
+#FAQTop {
+    background-color: var(--Color2) !important;
+}
+#FAQBottom {
+    background-color: var(--Color1) !important;
+}
+
+/* Detecting Hardware Background */
+#DetectingHardware {
+    background-color: var(--Color2) !important;
+}
+
+/* Color change when clicking side bar */
+.pills-primary .nav-link.active {
+    background-color: var(--Color4) !important;
+}
+
+/* Recovery Key Section */
+#RecoveryKey {
+    background-color: var(--Color2) !important;
+}
+
+#RecoveryKeyEye {
+    background-color: var(--Color2) !important;
+}
+
+#recoverySubmit {
+    background-color: var(--Color2) !important;
+}
+
+#EarningsBoost {
+    background-color: var(--Color2) !important;
+}
+
+#RegionSelect {
+    background-color: var(--Color2) !important;
+}
+
+#VersionNumber {
+    background-color: var(--Color2) !important;
+}
+
+#USA {
+    background-color: var(--Color1) !important;
+}
+
+#Europe {
+    background-color: var(--Color1) !important;
+}
+
+#Asisa {
+    background-color: var(--Color1) !important;
+}
+
+/* Supported Badges */
+#supBadge {
+    background-color: var(--Color4) !important;
+}
+#supBadge1 {
+    background-color: var(--Color4) !important;
+}
+
+#minerCanvas {
+    background-color: var(--Color1) !important;
+}
+
+#ViewKeys {
+    background-color: var(--Color4) !important;
+}
+
+/* Lines */
+#LineBelowBalance {
+    background-color: var(--Color2) !important;
+}

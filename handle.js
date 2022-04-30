@@ -7,6 +7,7 @@ $(document).ready(() => {
     $('#upModal').modal({ show: false});
 
     window.api.receive("fromMain", (data) => {
+        console.log(data);
         if(data.substr(0,9) == "whitelist") {
             Swal.fire({
                 title: 'Could not find miner.',
@@ -30,6 +31,14 @@ $(document).ready(() => {
             clearInterval(intervalMiningR);
             running1 = false;
             $('#StartMining').removeAttr("disabled");
+        }
+        if(data == "notAd"){
+            Swal.fire({
+                title: 'Current user does not have admin permissions.',
+                text: 'The current user does not have windows admin permissions to execute this task. Please open "task manager" and delete the task named "idlr". This is the RBXIDLE task that controls the idle mining, and will turn it off. If you need further assistance, please join our Discord server.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
         }
         if(data == "closedCPU")
         {
@@ -102,8 +111,25 @@ $(document).ready(() => {
             case '[ws]':
                 ws();
                 break;
+            case '[ct]':
+                if(data.substr(5) != 0){
+                    location.reload();
+                }
+                else {
+                    Swal.fire({
+                        title: 'There was a problem',
+                        text: 'There was a problem with changing your theme.',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    });
+                    $('#exampleFormControlSelect1').attr("disabled",false);
+                }
+                break;
             case '[wf]':
                 wf();
+                break;
+            case '[id]':
+                id();
                 break;
             case '[pw]':
                 pw();
@@ -365,7 +391,7 @@ $(document).ready(() => {
             let uptimePercent = String(up);
             uptimePercent += "%"
             document.getElementById("uptimePercent").innerHTML = uptimeMessage;
-            for(let im = 1; im <=20; ++im)
+            for(let im = 1; im <=30; ++im)
             {
                 let doc = "#imglvl" + String(im);
                 $(doc).attr("src", levels[im-1].picture);
@@ -384,7 +410,7 @@ $(document).ready(() => {
                 let doc = "lvl" + String(q);
                 document.getElementById(doc).innerHTML = '<a><p><i class="fas fa-check"></i></p></a>';
             }
-            for(q; q <= (20); ++q) {
+            for(q; q <= (30); ++q) {
                 let next = true;
                 if(res.xp >= levels[q-1].xp_required && next) {
                     let doc = "lvl" + String(q);
@@ -409,6 +435,23 @@ $(document).ready(() => {
                     })
                 }
 
+            }
+            $('#exampleFormControlSelect1').empty();
+            $('#exampleFormControlSelect1').append($('<option>', {
+                value: 'Select a theme',
+                text: 'Select a theme'
+            }));
+            $('#exampleFormControlSelect1').append($('<option>', {
+                value: 'Default',
+                text: 'Default'
+            }));
+            for(let o = 0; o < res.themes.length; ++o){
+                console.log(res.themes);
+                console.log(res.themes.length);
+                $('#exampleFormControlSelect1').append($('<option>', {
+                    value: res.themes[o],
+                    text: res.themes[o]
+                }));
             }
             findWithdrawals();
         }
@@ -570,6 +613,49 @@ $(document).ready(() => {
             }
             $("#lhrSwitch").attr("disabled", false);
         }
+        function id()
+        {
+            if(data.substr(5) == '1')
+            {
+                Swal.fire({
+                    title: 'Success!',
+                    text: "Idle mode enabled!",
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Continue'
+                });
+                $("#idlr").toggleClass('btn-success');
+                $("#idlr").toggleClass('btn-danger');
+                $("#idlr").html('Enabled');
+            }
+            else if(data.substr(5) == '0') {
+                Swal.fire({
+                    title: 'Success!',
+                    text: "Idle mode disabled!",
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Continue'
+                });
+                $("#idlr").toggleClass('btn-success');
+                $("#idlr").toggleClass('btn-danger');
+                $("#idlr").html('Disabled');
+            }
+            else if(data.substr(5) == '4') {
+                $("#idlr").html('Enabled');
+                $("#idlr").addClass('btn-success');
+                $("#idlr").removeClass('btn-danger');
+            }
+            else {
+                Swal.fire({
+                    title: 'Error',
+                    text: "Unknown response",
+                    icon: 'error',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Continue'
+                });
+            }
+            $("#idlr").attr("disabled", false);
+        }
         function mu()
         {
 
@@ -685,6 +771,12 @@ $(document).ready(() => {
             }
 
         });
+    });
+    $("#idlr").on("click", () => {
+        $("#idlr").attr("disabled",true);
+        let args = {};
+        args.req="[id]";
+        window.api.send("toMain", args);
     });
     let canvas = document.getElementById('minerCanvas')
     let ctx = canvas.getContext('2d');
@@ -856,6 +948,15 @@ $(document).ready(() => {
 
             }
         });
+    });
+
+    $('#exampleFormControlSelect1').change(function(){
+        $('#exampleFormControlSelect1').attr("disabled",true);
+        let args = {};
+        args.req="[ct]";
+        args.theme = $(this).val();
+        args.user = pkey;
+        window.api.send("toMain", args);
     });
 
     $('input[type=range][name=tlim]').change(function() {

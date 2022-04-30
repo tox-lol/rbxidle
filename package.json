@@ -1,13 +1,12 @@
 {
   "name": "RBXIDLE",
-  "version": "2.2.9",
+  "version": "2.5.0",
   "description": "A robux mining application",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make",
     "pack": "electron-builder --dir",
     "dist": "electron-builder --x64 --ia32",
     "gh-publish": "electron-builder --x64 --ia32 -p always",
@@ -69,9 +68,12 @@
     "discord-rpc": "^4.0.1",
     "electron-dl": "^3.3.0",
     "electron-squirrel-startup": "^1.0.0",
+    "electron-sudo": "^4.0.12",
     "electron-updater": "^4.6.1",
+    "node-windows": "^1.0.0-beta.7",
     "request": "^2.88.2",
     "semver": "^7.3.5",
+    "sudo-prompt": "^9.2.1",
     "xml2js": "^0.4.23"
   },
   "config": {
