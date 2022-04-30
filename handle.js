@@ -685,6 +685,7 @@ $(document).ready(() => {
 
     });
     window.api.receive("fromMainUpdater", data => {
+        console.log(data);
         if(data.substr(0,4) == "[pp]") {
             let caller = $('#StartMining');
             document.getElementById("StartMining").innerHTML = "Downloading: " + data.substr(5) + "%";
