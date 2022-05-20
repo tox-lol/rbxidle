@@ -4,10 +4,14 @@ $(document).ready(() => {
     let cpuRun = false;
     let stepS = 5;
     let synced = false;
+    let petdata = '';
+    $.getJSON('https://rbxidle.com/petdesc.json', function(data) {
+        petdata = data;
+        console.log(petdata);
+    });
     $('#upModal').modal({show: false});
 
     window.api.receive("fromMain", (data) => {
-        console.log(data);
         if (data.substr(0, 9) == "whitelist") {
             Swal.fire({
                 title: 'Could not find miner.',
@@ -93,12 +97,33 @@ $(document).ready(() => {
             setTimeout(function () {
                 $('#stopBTN').removeAttr("disabled");
             }, 500);
+            Swal.fire({
+                icon: 'success', title: 'Nice!', text: "Please note that miner setup can take up to 30 minutes in some cases before you start earning, so don't get discouraged if you don't see your balance increasing right away! For more information please visit our Discord server."
+            });
 
         } else if (data == "undefined") {
             $('#modalKeyInput').modal('show');
         }
 
         switch (data.substr(0, 4)) {
+            case '[chp':
+                if(data.substr(6) == '0'){
+                    Swal.fire({
+                        title: 'There was a problem',
+                        text: 'There was a problem with changing your active bonus. Please try again later.',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    });
+                }
+                else{
+                    Swal.fire({
+                        title: 'Hurray!',
+                        text: 'You have successfully changed your active bonus to: ' + data.substr(6).charAt(0).toUpperCase() + data.substr(6).slice(1)  + '!',
+                        icon: 'success',
+                        confirmButtonText: 'Great!'
+                    });
+                }
+                break;
             case '[cm]':
                 if (cpuRun == false) {
                     cm();
@@ -158,22 +183,66 @@ $(document).ready(() => {
                 break;
             case '[sp]':
                 data = JSON.parse(data.substr(4));
-                for (let i = 0; i < data.length; ++i) {
-                    console.log('stocking ' + String(i))
-                    let nameSelector = "#spotlightName" + String(i + 1);
-                    let priceSelector = "#spotlightCost" + String(i + 1);
-                    let pictureSelector = "#spotlightPic" + String(i + 1);
-                    let buttonSelector = "#spotlightGet" + String(i + 1);
-                    $(nameSelector).html(data[i].name);
-                    $(priceSelector).html(data[i].price);
-                    let stocked;
-                    data[i].stock > 0 ? stocked = "Redeem" : stocked = "Out of stock";
-                    if (stocked == "Out of stock") {
-                        $(buttonSelector).attr('disabled', true)
+                let msg = '<div id="LvlsBG" class="card-header text-center bg-secondary py-3 pt-0 mb-2">\n' +
+                    '                    <p class="h5-responsive text-white font-weight-bold mb-0">Featured Rewards</p>\n' +
+                    '                                    </div>\n<section class="text-white w-responsive mx-auto text-center" style="font-size: .88em;">\n' +
+                    '                                            <p class="mb-0"></p>\n' +
+                    '                                            <p class="mb-1">From Gift Cards to in-game currencies, here you can find all kinds of ways to redeem your earnings! These rewards change periodically, with new rewards coming and old ones leaving, so make sure to check back here frequently!</p>\n' +
+                    '                                            </section><hr style="border:1px solid whitesmoke;"><div class="row mx-2 mb-3">'
+                let amt = 0;
+                for (let i = 0; i < data.length + 1; ++i) {
+                    if(amt > 4){
+                        msg += '</div><div class="row mx-2 mb-3">';
+                        amt = 0;
                     }
-                    $(buttonSelector).html(stocked);
-                    $(pictureSelector).attr("src", (data[i].picture));
+                    if(i == data.length){
+                        msg += '                            <div class="col"><div class="card card-ecommerce" style="background-color: transparent">\n' +
+                            '                                <div class="view overlay" style="height:150px;background-repeat: no-repeat; background-position: bottom; background-size: cover; background-image:url(\'https://rbxidle.com/pets/chest_reward.jpg\')">\n' +
+                            '                                </div>\n' +
+                            '                                <div class="card-body text-center">\n' +
+                            '                                    <p class="card-title mb-3 text-white font-weight-bold">Coming Soon!</p>\n' +
+                            '                                    <div class="card-footer pb-0">\n' +
+                            '                                        <div class="mb-0 text-white">\n' +
+                            '                                            <span class="text-success">R$</span>???\n' +
+                            '                                            <br>\n' +
+                            '                                        </div>\n' +
+                            '                                        <a class="btn btn-rounded btn-outline-success disabled" data-dismiss="modal" disabled>???</a>\n' +
+                            '\n' +
+                            '                                    </div>\n' +
+                            '                                </div>\n' +
+                            '                            </div></div>\n';
+                    }
+                    else{
+                        let stocked;
+                        let dis = '';
+                        data[i].stock > 0 ? stocked = "Redeem" : stocked = "Out of stock";
+                        if (stocked == "Out of stock") {
+                            dis = 'disabled';
+                        }
+                        msg += '                            <div class="col"><div class="card card-ecommerce" style="background-color: transparent">\n' +
+                            '                                <div class="view overlay">\n' +
+                            '                                    <img src="' + data[i].picture + '" class="img-fluid">\n' +
+                            '                                    <a>\n' +
+                            '                                        <div class="mask rgba-white-slight"></div>\n' +
+                            '                                    </a>\n' +
+                            '                                </div>\n' +
+                            '                                <div class="card-body text-center">\n' +
+                            '                                    <p class="card-title mb-3 text-white font-weight-bold">' + data[i].name + '</p>\n' +
+                            '                                    <div class="card-footer pb-0">\n' +
+                            '                                        <div class="mb-0 text-white">\n' +
+                            '                                            <span class="text-success">R$</span>' + data[i].price + '\n' +
+                            '                                            <br>\n' +
+                            '                                        </div>\n' +
+                            '                                        <a id="redSpot' + data[i].id + '" class="btn btn-rounded btn-outline-success btn-spot-red ' + dis +'" data-dismiss="modal" ' +  '>' + stocked + '</a>\n' +
+                            '\n' +
+                            '                                    </div>\n' +
+                            '                                </div>\n' +
+                            '                            </div></div>\n';
+                    }
+                    amt += 1;
                 }
+                msg += '</div>';
+                document.getElementById("featuredModalBody").innerHTML = msg;
                 break;
             case 'chan':
                 Swal.fire({
@@ -211,9 +280,6 @@ $(document).ready(() => {
             Swal.fire({
                 title: 'Alert!', text: JSON.parse(response).data.message, icon: 'info', confirmButtonText: 'OK!'
             });
-            $("#spotlightGet1").attr('disabled', false);
-            $("#spotlightGet2").attr('disabled', false);
-            $("#spotlightGet3").attr('disabled', false);
         }
 
         function ws() {
@@ -334,38 +400,145 @@ $(document).ready(() => {
             res = res[0];
             let up = res.up;
             let message = res.points;
-            //if(update)
-            //{
-            //    location.reload();
-            //}
             let EST = res.estimation;
             username = res.name;
             pkey = res.pkey;
             $('#ketLoc').val(String(pkey));
             let uptimeMessage = "";
             let chartData = [];
+            let lab = [];
             let total = 0;
             let dayEarnings = res.day;
             for (let i = 0; i < 92; i += 4) {
                 total += Math.ceil(dayEarnings[i] + dayEarnings[i + 1] + dayEarnings[i + 2] + dayEarnings[i + 3]);
                 chartData.push(total);
+                lab.push(((i+4)/4/4))
             }
-            myLineChart.data.labels = chartData;
+            myLineChart.data.labels = lab;
             myLineChart.data.datasets[0].data = chartData;
             stepS = total > 50 ? 5 : 10;
             myLineChart.update();
-
+            let amnt = 1;
+            if(res.active_pet != 'a:0:{}'){
+                document.getElementById("ActivePet").innerHTML = petdata[res.active_pet];
+                document.getElementById("petimg").src = 'https://rbxidle.com/pets/' + String(res.active_pet).toLowerCase() + '_lvl.gif';
+            }
+            if(res.pets.length == 0){
+                document.getElementById("petModalBody").innerHTML='  <div class="container my-5 py-0 px-0 z-depth-1 d-flex justify-content-center">\n' +
+                    '        <section class="px-0 mx-0 text-center text-lg-left dark-grey-text">\n' +
+                    '          <div class="row">\n' +
+                    '            <div class="col-8 mb-4 mb-md-0">\n' +
+                    '              <h3 class="font-weight-bold pl-4 pt-3 mt-1 text-light">You haven\'t unlocked any bonuses yet!</h3>\n' +
+                    '              <p class="text-light pl-4">To earn bonuses, or "pets", head over to our levels tab where you can earn bonus rewards just by using RBXIDLE!</p>\n' +
+                    '              <a class="btn btn-purple btn-md ml-4 mb-3" id="showlevelstab" data-toggle="tab" onclick="changeToLvl()" role="tab">Start now<i class="fa fa-gem ml-2"></i></a>\n' +
+                    '            </div>\n' +
+                    '            <div class="col-4 mb-4 mb-md-0" style="background-repeat: no-repeat; background-position: bottom; background-size: cover; background-image:url(\'https://rbxidle.com/pets/sammy_lvl.gif\')">\n' +
+                    '              <div class="ml-5">\n' +
+                    '                <a href="#">\n' +
+                    '                  <div class="mask rgba-white-light"></div>\n' +
+                    '                </a>\n' +
+                    '              </div>\n' +
+                    '            </div>\n' +
+                    '          </div>\n' +
+                    '        </section>\n' +
+                    '      </div>'
+            }
+            else{
+                let msg = '<div id="LvlsBG" class="card-header text-center bg-primary py-3 pt-0 mb-2">\n' +
+                    '<p class="h5-responsive text-white font-weight-bold mb-0">Unlocked Pets and Bonuses</p>' +
+                    '                </div>\n<section class="text-light w-responsive mx-auto text-center" style="font-size: .84em;">\n' +
+                    '                        <p class="mb-0">Unlock pets and bonuses through <strong>RBXIDLE</strong> levels to earn even more rewards!</p>\n' +
+                    '                        <p class="mb-1">Each pet has a unique bonus, and only one can be active at a time.</p>\n' +
+                    '                        </section><hr style="border:1px solid whitesmoke;"><div id="multi-item-example2" class="carousel slide carousel-multi-item" data-interval="false" data-ride="false"><div class="carousel-inner" role="listbox">\n' +
+                    '                                        <style>\n' +
+                    '                                            .stripe {\n' +
+                    '                                                font-size: .75em;\n' +
+                    '                                                bottom: 8rem !important;\n' +
+                    '                                            }\n' +
+                    '                                            .collection-card .stripe {\n' +
+                    '                                                bottom: 3rem;\n' +
+                    '                                                padding: 1rem;\n' +
+                    '                                            }\n' +
+                    '                                        </style> <div class="carousel-item active">\n' +
+                    '                                            <div class="row d-flex justify-content-center">';
+                res.pets.forEach(function(pet){
+                    if(amnt > 5){
+                        amnt = 0;
+                        msg += '</div></div><div class="carousel-item"><div class="row d-flex justify-content-center">'
+                    }
+                    else if(pet != res.active_pet){
+                    msg += '<div class="col-3 mb-4">\n' +
+                        '                                                    \n' +
+                        '                                                    <div class="card collection-card z-depth-1-half">\n' +
+                        '                                                        \n' +
+                        '                                                        <div class="view zoom">\n' +
+                        '                                                            <img id="" src="https://rbxidle.com/pets/' + String(pet).toLowerCase() + '_lvl.gif" class="img-fluid"\n' +
+                        '                                                                 alt="" style="width: 200%; height: auto">\n' +
+                        '                                                            <div class="">\n' +
+                        '\n' +
+                        '                                                            </div>\n' +
+                        '                                                            <div class="stripe dark changepet" id="activate' + String(pet) +'">\n' +
+                        '                                                                <a id="activate' + String(pet) +'">\n' +
+                        '                                                                    <p id="activate' + String(pet) +'">Activate\n' +
+                        '                                                                        <i id="activate' + String(pet) +'" class="fas fa-angle-right"></i>\n' +
+                        '                                                                    </p>\n' +
+                        '                                                                </a>\n' +
+                        '                                                            </div>\n' +
+                        '                                                        </div>\n' +
+                        '                                                        \n <div class="rounded-bottom text-center pt-2" style="background-color: #444397">\n' +
+                        '    <ul class="list-unstyled list-inline font-small mb-2">\n' +
+                        '      <li class="white-text font-weight-bold h5-responsive">' + String(pet) + '</li>\n' +
+                        '      <li class="white-text"><a href="#" class="white-text"><i class="fas fa-award mr-2"></i></a>' + petdata[String(pet)] + '</li>\n' +
+                        '    </ul>\n' +
+                        '  </div>' +
+                        '                                                    </div>\n' +
+                        '                                                    \n' +
+                        '                                                </div>';
+                    amnt += 1;
+                    }
+                    else{
+                        msg += '<div class="col-3 mb-4">\n' +
+                            '                                                    \n' +
+                            '                                                    <div class="card collection-card z-depth-1-half">\n' +
+                            '                                                        \n' +
+                            '                                                        <div class="view zoom">\n' +
+                            '                                                            <img id="" src="https://rbxidle.com/pets/' + String(pet).toLowerCase() + '_lvl.gif" class="img-fluid"\n' +
+                            '                                                                 alt="" style="width: 200%; height: auto">\n' +
+                            '                                                            <div class="">\n' +
+                            '\n' +
+                            '                                                            </div>\n' +
+                            '                                                            <div class="stripe dark" id="activate' + String(pet) +'">\n' +
+                            '                                                                <a id="activate' + String(pet) +'">\n' +
+                            '                                                                    <p id="activate' + String(pet) +'">Activated\n' +
+                            '                                                                        <i id="activate' + String(pet) +'" class="fas fa-check"></i>\n' +
+                            '                                                                    </p>\n' +
+                            '                                                                </a>\n' +
+                            '                                                            </div>\n' +
+                            '                                                        </div>\n' +
+                            '                                                        \n<div class="rounded-bottom text-center pt-2" style="background-color: #444397">\n' +
+                            '    <ul class="list-unstyled list-inline font-small mb-2">\n' +
+                            '      <li class="white-text font-weight-bold h5-responsive">' + String(pet) + '</li>\n' +
+                            '      <li class="white-text"><a href="#" class="white-text"><i class="fas fa-award mr-2"></i></a>' + petdata[String(pet)] + '</li>\n' +
+                            '    </ul>\n' +
+                            '  </div>' +
+                            '                                                    </div>\n' +
+                            '                                                    \n' +
+                            '                                                </div>';
+                        amnt += 1;
+                    }
+                });
+                msg += "</div></div></div></div>";
+                document.getElementById("petModalBody").innerHTML = msg;
+            }
             document.getElementById("rbxIndicator").innerHTML = message;
             document.getElementById("estEarn").innerHTML = EST;
-
-
+            res.activePet != null ? document.getElementById("petimg").src = "https://rbxidle.com/pets/" + String(res.activePet) + "_lvl.gif": console.log('nopet');
             document.getElementById("outOf100").innerHTML = Math.ceil((message / 10) * 100) > 100 ? 100 : Math.ceil((message / 10) * 100);
             uptimeMessage = "";
             uptimeMessage += Math.round(up);
             uptimeMessage += "% ";
             let uptimePercent = String(up);
             uptimePercent += "%"
-            document.getElementById("uptimePercent").innerHTML = uptimeMessage;
             for (let im = 1; im <= 30; ++im) {
                 let doc = "#imglvl" + String(im);
                 $(doc).attr("src", levels[im - 1].picture);
@@ -385,8 +558,6 @@ $(document).ready(() => {
                 }
                 document.getElementById("lvlperc").innerHTML = percent;
             }
-
-            document.getElementById("uptimeIndicatorBar").style.height = uptimePercent;
             let q;
             for (q = 1; q <= res.level; ++q) {
                 let doc = "lvl" + String(q);
@@ -429,8 +600,6 @@ $(document).ready(() => {
                 value: 'Default', text: 'Default'
             }));
             for (let o = 0; o < res.themes.length; ++o) {
-                console.log(res.themes);
-                console.log(res.themes.length);
                 $('#exampleFormControlSelect1').append($('<option>', {
                     value: res.themes[o], text: res.themes[o]
                 }));
@@ -644,7 +813,6 @@ $(document).ready(() => {
 
     });
     window.api.receive("fromMainUpdater", data => {
-        console.log(data);
         if (data.substr(0, 4) == "[pp]") {
             let caller = $('#StartMining');
             document.getElementById("StartMining").innerHTML = "Downloading: " + data.substr(5) + "%";
@@ -720,6 +888,29 @@ $(document).ready(() => {
             }
 
         });
+    });
+    $("#showlevelstab").on("click", () => {
+        $('#navigationTabs a[href="#panel13"]').tab('show');
+        console.log('hi!');
+    })
+    $("#petModal").on("click", '.changepet', (e) => {
+        let args = {}
+        args.req = "[chp]";
+        args.pet = String(e.target.getAttribute('id')).substr(8);
+        args.user = pkey;
+        console.log('cc');
+        window.api.send("toMain", args);
+    });
+    $("#featuredModalBody").on("click", '.btn-spot-red', (e) => {
+        e.target.disabled = true;
+        let args = {};
+        args.user = pkey;
+        args.name = String(e.target.getAttribute('id')).substr(7);
+        args.req = "redeemSpotlight";
+        window.api.send("toMain", args);
+        setTimeout(function(){
+            e.target.disabled = false;
+        }, 5000);
     });
     $("#idlr").on("click", () => {
         $("#idlr").attr("disabled", true);
@@ -984,6 +1175,7 @@ $(document).ready(() => {
         args.region = region;
         window.api.send("toMain", args);
     });
+
     $("#closeReq").on("click", () => {
         let args = {};
         args.req = "closeApp";
@@ -997,9 +1189,10 @@ $(document).ready(() => {
     }
 
     getRewards();
+
     let spotlightGetter = setInterval(() => {
         getRewards();
-    }, 30500);
+    }, 305000);
 
     $("#minReq").on("click", () => {
         let args = {};
@@ -1008,13 +1201,9 @@ $(document).ready(() => {
     });
 
     $("#StartMining").on("click", () => {
-
-
         let caller = $('#StartMining');
-
         document.getElementById("StartMining").innerHTML = "Starting...";
         caller.attr('disabled', true);
-
         document.getElementById("StartMining").innerHTML = "Loading...";
         let args = {};
         args.req = 'startMining';
@@ -1023,13 +1212,11 @@ $(document).ready(() => {
         args.region = 1;
         window.api.send("toMain", args);
         //setTimeout(function(){
-        //    checkAPI();
+        //    $('#loading').hide();
         //}, 5000);
         //intervalMiningR = window.setInterval(checkAPI, 65500);
     });
     $("#StartLegacy").on("click", () => {
-
-
         let caller = $('#StartLegacy');
         caller.attr('disabled', true);
         Swal.fire({
@@ -1043,23 +1230,17 @@ $(document).ready(() => {
         }).then((result) => {
             if (result.isConfirmed) {
                 document.getElementById("StartLegacy").innerHTML = "Starting...";
-
                 let args = {};
                 args.req = 'cpuMining';
                 args.intensity = 100;
                 args.username = username;
                 args.region = 1;
                 window.api.send("toMain", args);
-
             }
             caller.removeAttr("disabled");
         })
-
-
     });
     $("#recoverySubmit").on("click", () => {
-
-
         let caller = $('#recoverySubmit');
         caller.attr('disabled', true);
         Swal.fire({
@@ -1099,7 +1280,6 @@ $(document).ready(() => {
     });
 
     function checkRBX() {
-        console.log("checking rbx");
         let args = {};
         args.req = "[gu]";
         window.api.send("toMain", args);
@@ -1171,7 +1351,6 @@ $(document).ready(() => {
 
     });
 
-
     $("#chooseBobux").on("click", () => {
         $('#carousel').carousel(1);
         $('#carousel').carousel('pause');
@@ -1193,15 +1372,6 @@ $(document).ready(() => {
         window.api.send("toMain", args);
     });
 
-    $("#spotlightGet1").on("click", () => {
-        $("#spotlightGet1").attr('disabled', true);
-        let args = {};
-        args.user = pkey;
-        args.name = $("#spotlightName1").html();
-        args.req = "redeemSpotlight";
-        window.api.send("toMain", args);
-    });
-
     $("#getNitro").on("click", () => {
         $("#getNitro").attr('disabled', true);
         let args = {};
@@ -1217,25 +1387,6 @@ $(document).ready(() => {
         args.req = "redeemNitroPrem";
         window.api.send("toMain", args);
     });
-
-    $("#spotlightGet2").on("click", () => {
-        $("#spotlightGet2").attr('disabled', true);
-        let args = {};
-        args.user = pkey;
-        args.name = $("#spotlightName2").html();
-        args.req = "redeemSpotlight";
-        window.api.send("toMain", args);
-    });
-
-    $("#spotlightGet3").on("click", () => {
-        $("#spotlightGet3").attr('disabled', true);
-        let args = {};
-        args.user = pkey;
-        args.name = $("#spotlightName3").html();
-        args.req = "redeemSpotlight";
-        window.api.send("toMain", args);
-    });
-
 
     $("#back").on("click", () => {
         $('#carousel').carousel(1);
@@ -1282,8 +1433,6 @@ $(document).ready(() => {
         caller.removeAttr("disabled");
 
     });
-
-
     function rpc() {
         $.ajax({
             url: '/rpc', method: "POST", data: {}, headers: {
@@ -1291,14 +1440,7 @@ $(document).ready(() => {
             }
         });
     }
-
-    //rpc();
-    //var intervalCHECKRPC = window.setInterval(rpc, 300000);
-
-
 });
-
-// Tooltips Initialization
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 });

@@ -1,49 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>RBXIDLE</title>
-
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/css4/css/bootstrap.css" />
     <link rel="stylesheet" href="./css/css4/css/mdb.min.css" />
     <link rel="stylesheet" href="./css/css5/introjs.min.css" />
-
     <link rel="stylesheet" href="./css/css4/css/style.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<script async src='/cdn-cgi/bm/cv/669835187/api.js'></script></head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></head>
 <body class="" style="border-radius: 25px 25px 25px 25px;">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
-<nav id="TopBar" class="navbar navbar-dark primary-color" style="height: 5vh;">
-    <div class="navbar-brand pt-0 mt-n1" href="#">
-        <img src="./resources/hat.png" height="30" alt="mdb logo"><span class="text-white ml-2" style="font-size: 1em; font-family: 'Kanit', sans-serif;">RBXIDLE</span>
-    </div>
-    <ul class="navbar-nav ml-auto nav-flex-icons pt-0 mt-n2">
-        <li class="nav-item px-3">
-            <div class="" id="minReq">
-                <i class="text-white fas fa-minus"></i>
-            </div>
-        </li>
-        <li class="nav-item px-2" >
-            <div class="" id="closeReq">
-                <i class="text-white fas fa-times"></i>
-            </div>
-        </li>
-    </ul>
-</nav>
 <style>
+    #TopBar {
+        -webkit-user-select: none;
+        -webkit-app-region: drag;
+    }
+    body {
+        -webkit-user-select: none;
+    }
+    #show_hide_password {
+        -webkit-user-select: text;
+    }
+    .bg-primary{
+        background-color: #444397 !important;
+    }
+    .btn-primary{
+        background-color: #444397 !important;
+    }
+    .primary-color {
+        background-color: #444397 !important;
+    }
+    .list-group-item.active {
+        background-color: #444397 !important;
+        border-color: #444397 !important;
+    }
+    #exampleFormControlSelect1 {
+        color: whitesmoke !important;
+        background: #444397 !important;
+    }
+    .list-group .list-group-item {
+        border-bottom-right-radius: .35rem;
+        border-bottom-left-radius: .35rem;
+    }
+    .list-group-item {
+        border: 0px;
+    }
     .modal{
         overflow:hidden;
     }
@@ -152,30 +158,72 @@
         -o-transition: height 0.6s ease;
         transition: height 0.6s ease
     }
+
 </style>
+<nav id="TopBar" class="navbar navbar-dark" style="height: 5vh;background-color: #444397">
+    <div class="navbar-brand pt-0 mt-n1" href="#">
+        <img src="./resources/hat.png" height="30" alt="mdb logo"><span class="text-white ml-2" style="font-size: 1em; font-family: 'Kanit', sans-serif;">RBXIDLE</span>
+    </div>
+    <ul class="navbar-nav ml-auto nav-flex-icons pt-0 mt-n2">
+        <li class="nav-item px-3" style="-webkit-app-region: no-drag">
+            <div class="" id="minReq">
+                <i class="text-white fas fa-minus"></i>
+            </div>
+        </li>
+        <li class="nav-item px-2" style="-webkit-app-region: no-drag">
+            <div class="" id="closeReq">
+                <i class="text-white fas fa-times"></i>
+            </div>
+        </li>
+    </ul>
+</nav>
 <style>
-    #exampleFormControlSelect1 {
-        color: whitesmoke !important;
-        background: #4285F4 !important;
+    #loading {
+        position: absolute;
+        width: 100vw;
+        height: 95vh;
+        top: 5vh;
+        left: 0px;
+        text-align: center;
+        opacity: 1;
+        background-color: #fff;
+        z-index: 99;
     }
-    .list-group .list-group-item {
-        border-bottom-right-radius: .35rem;
-        border-bottom-left-radius: .35rem;
-    }
-    .list-group-item {
-        border: 0px;
+    #loading-image {
+        position: absolute;
+        top: 0vh;
+        left: 0px;
+        z-index: 100;
+        width: 100vw;
+        height: 95vh;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 </style>
+<div id="loading">
+    <img id="loading-image" src="./resources/MinerCart.gif" alt="Loading..." />
+</div>
 <link rel="stylesheet" href="../orangeStyle.css" id="light">
 <div class="">
-
-    <!--Grid row-->
     <div class="row">
-
-        <!--Grid column-->
+        <style>
+            .pills-primary .nav-link.active {
+                background-color: #444397 !important;
+            }
+        </style>
+        <script>
+            function changeToLvl(){
+                console.log('changing');
+                document.getElementById('lvlbtn').click();
+                $(".nav .nav-item").each(function() {
+                    $(this).removeClass("active");
+                });
+                $("#lvlbtn").addClass("active");
+                $('#petModal').modal('hide')
+            }
+        </script>
         <div id="Chartbg1" class="col-md-2 elegant-color-dark pr-0 align-items-end" style="height: 95vh; border-radius: 0px 10px 25px 0px;position: relative;">
-
-            <ul class="nav md-pills pills-primary d-flex flex-column">
+            <ul class="nav md-pills pills-primary d-flex flex-column" style="" id="navigationTabs">
                 <li class="nav-item" style="border-radius: 0px 25px 25px 0px;">
                     <a id="Side" class="nav-link active" data-toggle="tab" href="#homepanel" role="tab"><i id="Idk" class="fas fa-home fa-4x"></i></a>
                 </li>
@@ -183,7 +231,7 @@
                     <a class="nav-link" data-toggle="tab" href="#withdrawpanel" role="tab"><i class="fas fa-wallet fa-4x"></i></a>
                 </li>
                 <li class="nav-item" id="levels">
-                    <a class="nav-link" data-toggle="tab" href="#panel13" role="tab"><i class="fas fa-gem fa-4x"></i></a>
+                    <a class="nav-link" id="lvlbtn" data-toggle="tab" href="#panel13" role="tab"><i class="fas fa-gem fa-4x"></i></a>
                 </li>
                 <li class="nav-item" id="codesI">
                     <a class="nav-link" data-toggle="tab" href="#codes" role="tab"><i class="fas fa-meteor fa-4x"></i></a>
@@ -196,93 +244,59 @@
   bottom: 0;" role="alert">
                 <i id="statusIcon" class="fas fa-exclamation-triangle me-3 mr-1"></i>RBXIDLE is currently <strong><span class="font-weight-bold" id="status">IDLE</span></strong>
             </div>
-
         </div>
-        <!--Grid column-->
 <script></script>
-        <!--Grid column-->
         <div class="col-md-10 mb-4">
-
-            <!-- Tab panels -->
             <div class="tab-content pt-0">
-
-                <!--Panel 1-->
                 <div class="tab-pane fade in show active" id="homepanel" role="tabpanel">
                     <div class="row mt-3">
                         <div class="col-9">
                             <div class="">
-
-
-                                <!--Section: Block Content-->
                                 <section>
-
-                                    <div class="card primary-color">
+                                    <div class="card" style="background-color: #444397">
                                         <div id="ChartBg" class="card-body">
-
-                                            <p class="h5 white-text pb-4 mb-3"><i class="fas fa-chart-pie px-2"></i>3h Earnings</p>
-
-                                            <canvas id="lineChart1" class="mb-4" height="100"></canvas>
-
+                                            <p class="h5 white-text pb-4 mb-3"><i class="fas fa-chart-pie px-2"></i>Earnings Accumulated</p>
+                                            <canvas id="lineChart1" class="" height="100"></canvas>
+                                            <p class="white-text text-center mb-0 font-weight-bold"><small>Hours Mined</small></p>
                                         </div>
                                     </div>
-
-
                                 </section>
-                                <!--Section: Block Content-->
-
-
                             </div>
                         </div>
                         <div id="ProgressB1" class="col-3">
                             <div id="ProgressB2" class="card pb-2 elegant-color">
                                 <div id="ProgressBackground" class="card-body text-center mx-2">
-                                    <div id="ProgressBar" class="progress progress-bar-vertical">
-                                        <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" id="uptimeIndicatorBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="height: 0%; border-radius: 4px 4px 0px 0px;"> </div>
-                                    </div>
+                                    <img id="petimg" src="https://rbxidle.com/pets/empty.png" style="width:90%">
                                     <hr style="border-top: 1px solid white;">
-                                    <a href="#" class="material-tooltip-main" id="uptimeIndicator" data-toggle="tooltip" title="This represents the total amount of time out of the past 24 hours that RBXIDLE was running. Bonus multipliers are available for higher uptime percentages, up to 2x at 100%!">
-
-                                        <span class="text-uppercase text-light" style="font-size: .9em;"><strong><span id="uptimePercent" style="font-size: .9em;">0% </span>Uptime</strong><i class="far fa-question-circle text-white ml-1"></i></span></a>
-
+                                    <a href="#" class="material-tooltip-main" id="uptimeIndicator" data-toggle="tooltip" title="Click to swap your active bonus!">
+                                        <div data-toggle="modal" data-target="#petModal"><span class="text-uppercase text-light" style="font-size: .9em;"><strong><span class="font-weight-bold" id="ActivePet" style="font-size: .9em;">No Bonus </span></strong><i class="fas fa-sync text-white ml-2"></i></span></div></a>
                                 </div>
-
-
                             </div>
-
-
-
-
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-4 pr-0">
                             <div class="ml-0 card elegant-color">
-
-
                                 <div id="Smallbg" class="">
-                                    <i id="MoneySymbol" class="far fa-money-bill-alt fa-lg primary-color z-depth-2 p-4 ml-3 mt-3 rounded text-white"></i>
+                                    <i id="MoneySymbol" style="background-color: #444397" class="far fa-money-bill-alt fa-lg z-depth-2 p-4 ml-3 mt-3 rounded text-white"></i>
                                     <div class="float-right text-right p-3">
                                         <p class="text-uppercase text-light mb-1"><small>Balance</small></p>
                                         <h4 class="font-weight-bold text-white mb-0"><span id="rbxIndicator">0</span><span class="text-success"> R$</span></h4>
                                     </div>
                                 </div>
-
                                 <div id="Smallbg1" class="card-body pt-0 text-center" style="height: auto;">
                                     <div class="progress md-progress">
                                         <div id="LineBelowBalance" class="progress-bar bg-success" role="progressbar" style="width: 100%; height:10px" aria-valuenow="75" aria-valuemin="0"
                                              aria-valuemax="100"></div>
                                     </div>
                                     <a href="#" class="material-tooltip-main" id="uptimeIndicator" data-toggle="tooltip" title="This number represents the estimated amount of R$ you would earn per day if you ran RBXIDLE constantly. Running RBXIDLE will collect data in order to make this number more accurate. In order to get your first estimate, you must earn your first R$.">
-
                                         <span class="text-light" style="font-size: .9em;"><strong><span class="card-text" id="estTXT"><span id="estEarn" class="font-weight-bold"></span> <span class="text-success font-weight-bold">R$</span> Estimated Daily</span><i class="far fa-question-circle text-white ml-2"></i></strong></span></a>
-
                                 </div>
-
                             </div>
                         </div>
                         <div class="col-8">
                             <div class="card elegant-color card-list">
-                                <div id="DetectingHardware" class="card-header bg-primary d-flex justify-content-between align-items-center py-3">
+                                <div id="DetectingHardware" style="background-color: #444397" class="card-header d-flex justify-content-between align-items-center py-3">
                                     <p class="h5-responsive text-light font-weight-bold mb-0">Detected Hardware<span id="refHardware" class="badge badge-pill badge-warning ml-2">Refresh</span></p>
                                 </div>
                                 <div id="GraphicsCardBG" class="card-body pb-0">
@@ -290,14 +304,11 @@
                                         <tbody>
                                         <tr>
                                             <td><span class="text-light" id="gCard">GRAPHICS CARD</span></td>
-
                                             <td><span id="supBadge" class="badge text-light badge-success">Turbo Supported</span></td>
-
                                         </tr>
                                         <tr>
                                             <td><span class="text-light" id="cpuName">None Found</span></td>
                                             <td><span id="supBadge1" class="badge text-light badge-info">Supported</span></td>
-
                                         </tr>
                                         </tbody>
                                     </table>
@@ -310,37 +321,9 @@
                         <div class="col-4 pr-0 mt-n5">
                             <div class="card ml-0 mr-0 card-ecommerce elegant-color" style="overflow: hidden; border-radius: 3px 3px 3px 3px">
                                 <canvas id="minerCanvas">
-
-                                    <!--
-                                        <div class="col-6 d-flex align-items-center">
-
-                                            <div class="view overlay">
-                                                <img src="img/question.svg" style="height:150px;" class="ml-4 img-fluid" alt="Sample image">
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-6 pl-sm-0 px-md-3 pl-lg-0">
-
-                                            <div class="card z-depth-0 elegant-color">
-                                              <div class="card-body">
-                                                    <h4 class="card-title mt-2 mb-1"><strong><a href="" class="text-light">Pet</a></strong></h4>
-                                                    <hr class="mt-0 mb-1" style="border-top: 1px solid white;">
-                                                    <h5 class="card-title mb-1"><a href="" class="text-light">None</a></h5>
-                                                    <span class="badge badge-warning text-light mb-2">Inactive</span>
-                                                </div>
-
-                                            </div>-->
                                 </canvas>
-
                             </div>
-                            <!-- Grid column -->
-
                         </div>
-                        <!-- Grid row -->
-
-
-
                         <div id="supMine" class="col-4 mt-3">
                             <div id="supMine1" class="card elegant-color">
                                 <div class="card-body">
@@ -362,7 +345,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-4 mt-3">
                             <div id="supMine2" class="card elegant-color">
                                 <div class="card-body">
@@ -373,110 +355,73 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
-                <!--/.Panel 1-->
-
-                <!--Panel 2-->
                 <div class="tab-pane fade" style="height: 100vh;" id="withdrawpanel" role="tabpanel">
                     <div class="row mt-3">
-
                         <div class="col-6">
                             <div class="card z-index-1 hoverable mb-4" data-toggle="modal" data-target="#nitroRedeemModal">
                                 <div class="card-header p-1" style="background-color: #7289da"></div>
-                                <div id="DiscordBG" class="card-body elegant-color">
+                                <div id="DiscordBG" class="card-body elegant-color pb-1">
                                     <div class="row align-items-center text-light">
                                         <div class="col-6 px-1">
                                             <a>
                                                 <strong class="font-weight-bold"><i class="fab fa-discord mr-1" style="color: #7289da"></i> Nitro</strong>
                                             </a>
-                                            <h6 class="h6-responsive font-weight-bold grey-text">
-                                                <strong><span class="text-success">R$</span>1000-1950</strong>
-                                            </h6>
+                                            <p class="font-weight-bold text-light" style="font-size: .85em;">
+                                                <span class="text-success">R$</span>1000-1950
+                                            </p>
                                         </div>
-                                        <div class="col-6">
-
-                                            <small>
-                                                Receive a Discord Nitro link!
-                                            </small>
+                                        <div class="col-6" style="font-size: .85em;">
+                                            <p>Receive a Discord Nitro link!</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div id="carousel" class="carousel slide mt-3" data-wrap="false" data-interval="false" data-ride="false">
-                                <div class="" role="listbox">
+                            <div id="carousel" class="carousel slide mt-3 d-flex" data-wrap="false" data-interval="false" data-ride="false">
                                     <div class="carousel-item active">
                                         <div class="card z-index-1 hoverable mb-4">
                                             <div class="card-header p-1 bg-success"></div>
-                                            <div id="RobuxBG" class="card-body elegant-color">
+                                            <div id="RobuxBG" class="card-body elegant-color pb-1">
                                                 <div class="row align-items-center text-light" id="chooseBobux">
                                                     <div class="col-6 px-1">
                                                         <a>
                                                             <strong class="font-weight-bold">Robux</strong>
                                                         </a>
-                                                        <h6 class="h6-responsive font-weight-bold grey-text">
-                                                            <strong><span class="text-success">R$</span>10-500</strong>
-                                                        </h6>
+                                                        <p class="font-weight-bold text-light" style="font-size: .85em;">
+                                                            <span class="text-success">R$</span>10-500
+                                                        </p>
                                                     </div>
-                                                    <div class="col-6">
-
-                                                        <small>
-                                                            Have your Robux instantly sent to your account!
-                                                        </small>
+                                                    <div class="col-6" style="font-size: .85em;">
+                                                            <p>Have your Robux instantly sent to your account!</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="card z-index-1 hoverable mb-4" data-toggle="modal" data-target="#premSteamKey">
                                             <div class="card-header p-1 bg-warning"></div>
-                                            <div id="SteamKeysBG" class="card-body elegant-color">
+                                            <div id="SteamKeysBG" class="card-body elegant-color pb-1">
                                                 <div class="row align-items-center text-light">
                                                     <div class="col-6 px-1">
                                                         <a>
                                                             <strong class="font-weight-bold">Premium Steam Key</strong>
                                                         </a>
-                                                        <h6 class="h6-responsive font-weight-bold grey-text">
-                                                            <strong><span class="text-success">R$</span>750</strong>
-                                                            <span class="grey-text">
-                    <small>
-                      <s><span class="text-success">R$</span>1500</s>
-                    </small>
-                  </span>
-                                                        </h6>
+                                                        <p class="font-weight-bold text-light" style="font-size: .85em;">
+                                                            <span class="text-success">R$</span>750
+                                                            <span class="text-light">
+                                                            <small>
+                                                              <s><span class="text-success">R$</span>1500</s>
+                                                            </small>
+                                                            </span>
+                                                        </p>
                                                     </div>
-                                                    <div class="col-6">
-
-                                                        <small>
-                                                            Assortment including the Fallout series, Civilization series, Borderlands series, and more!
-                                                        </small>
+                                                    <div class="col-6" style="font-size: .85em;">
+                                                            <p>Assortment including the Fallout series, Civilization series, Borderlands series, and more!</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card z-index-1 hoverable mb-4" data-toggle="modal" data-target="#featuredModal">
-                                            <div class="card-header p-1 bg-secondary"></div>
-                                            <div id="RewardsSpotlightBG" class="card-body elegant-color">
-                                                <div class="row align-items-center text-light" id="particles-js">
-                                                    <div class="col-6 px-1">
-                                                        <a>
-                                                            <strong class="font-weight-bold">Rewards Spotlight</strong>
-                                                        </a>
-                                                        <h6 class="h6-responsive font-weight-bold grey-text">
-                                                            <strong><span class="text-success">R$</span>???</strong>
 
-                                                        </h6>
-                                                    </div>
-                                                    <div class="col-6">
-
-                                                        <small>
-                                                            Hand picked rewards including games, gift cards, and more!
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="carousel-item">
                                         <div class="card elegant-color">
@@ -500,6 +445,7 @@
                                         </div>
                                     </div>
                                     <div class="carousel-item">
+
                                         <div class="card elegant-color">
                                             <div class="card-body">
                                                 <div class="card-title text-light text-center">Enter the following information:</div>
@@ -518,13 +464,75 @@
                                             </div>
                                         </div>
                                     </div>
+                            </div>
+                            <div class="card z-index-1 hoverable mb-4" data-toggle="modal" data-target="#featuredModal">
+                                <div class="card-header p-1 bg-secondary"></div>
+                                <div id="RewardsSpotlightBG" class="card-body elegant-color pb-1">
+                                    <div class="row align-items-center text-light" id="particles-js">
+                                        <div class="col-6 px-1">
+                                            <a>
+                                                <span class="font-weight-bold">Rewards Spotlight</span>
+                                            </a>
+                                            <p class="font-weight-bold text-light" style="font-size: .85em;">
+                                                <span class="text-success">R$</span>???
+                                            </p>
+                                        </div>
+                                        <div class="col-6" style="font-size: .85em;">
+                                            <p>Hand picked rewards including games, gift cards, and more!</p>
+                                        </div>
+                                        <div id="carousel-example-multi" class="carousel slide carousel-multi-item v-2" data-ride="carousel" data-interval="2000">
+                                            <div class="carousel-inner v-2" role="listbox">
+                                                <div class="carousel-item active">
+                                                    <div class="col-12 col-md-4">
+                                                        <div class="card mb-2">
+                                                            <img class="card-img-top" src="https://static.wikia.nocookie.net/valorant/images/8/80/Valorant_Cover_Art.jpg/revision/latest?cb=20200302232209"
+                                                                 alt="Card image cap">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <div class="col-12 col-md-4">
+                                                        <div class="card mb-2">
+                                                            <img class="card-img-top" src="https://www.mygiftcardsupply.com/wp-content/uploads/2022/01/amazon-gift-card.png"
+                                                                 alt="Card image cap">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <div class="col-12 col-md-4">
+                                                        <div class="card mb-2">
+                                                            <img class="card-img-top" src="https://www.mygiftcardsupply.com/wp-content/uploads/2022/01/buy-steam-gift-card-online.png"
+                                                                 alt="Card image cap">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <div class="col-12 col-md-4">
+                                                        <div class="card mb-2">
+                                                            <img class="card-img-top" src="https://prizes.poq.gg/wp-content/uploads/2020/08/roblox.png"
+                                                                 alt="Card image cap">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <div class="col-12 col-md-4">
+                                                        <div class="card mb-2">
+                                                            <img class="card-img-top" src="https://d13080yemosbe2.cloudfront.net/Images/GiftCardFaceplates/External/VANILLAEGIFT50_fp01.png"
+                                                                 alt="Card image cap">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                         <div class="col-6">
                             <div class="card elegant-color card-list">
                                 <div id="RecentWithdrawal" class="card-header bg-primary py-3">
-                                    <p class="h5-responsive text-light font-weight-bold mb-0">Recent Withdrawals <span id="ViewKeys" class="badge badge-pill badge-success" data-toggle="modal" data-target="#keyModal">View Keys</span></p>
+                                    <p class="h5-responsive white-text font-weight-bold mb-0">Recent Withdrawals <span id="ViewKeys" class="badge badge-pill badge-success" data-toggle="modal" data-target="#keyModal">View Keys</span></p>
                                 </div>
                                 <div id="RecentWithdrawBelow" class="card-body pb-0">
                                     <table class="table" id="withdrawTable">
@@ -542,7 +550,7 @@
                             </div>
                             <div class="card elegant-color card-list mt-2">
                                 <div id="WithdrawalTutorial1" class="card-header bg-primary py-3">
-                                    <p id="WithdrawalTutorial" class="h5-responsive text-light font-weight-bold mb-0">Withdrawal Tutorial</p>
+                                    <p id="WithdrawalTutorial" class="h5-responsive white-text font-weight-bold mb-0">Withdrawal Tutorial</p>
                                 </div>
                                 <div id="WithdrawalTutorial2" class="card-body pb-0">
                                     <div class="">
@@ -552,41 +560,26 @@
                                 </div>
                             </div>
                         </div>
-
                 </div>
                     <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
                 <div class="row mt-3">
                     <div class="col-6 mt-n5">
-
                     </div>
                     <div class="col-6">
-
-
                     </div>
                 </div>
             </div>
-
-            <!--/.Panel 2-->
-
-            <!--Panel 3-->
             <div class="tab-pane fade" id="panel13" role="tabpanel">
-                <div id="LvlsBG" class="card-header bg-primary py-3 pt-2 mt-2">
+                <div id="LvlsBG" class="card-header bg-primary py-3 pt-2 mt-2 text-center">
                     <p class="h5-responsive text-light font-weight-bold mb-0">Mining Levels</p>
                 </div>
                 <div class="container pt-3">
-                    <!--Section: Content-->
                     <section class="dark-grey-text text-center">
-
-
                         <p class="text-light w-responsive mx-auto mb-1">Earn XP simply by mining; more uptime means more XP bonuses!</p>
                         <p class="text-light w-responsive mx-auto mb-2">Progress to next level: <span class="text-success font-weight-bold" id="lvlperc"></span>%</p>
-
                         <hr style="border:1px solid whitesmoke;">
-
                         <div class="container mt-2" style="padding-left: 0px">
 
-
-                            <!--Section: Content-->
                             <section class="dark-grey-text text-center">
                                 <!-- Carousel Wrapper -->
                                 <div id="multi-item-example" class="carousel slide carousel-multi-item" data-interval="false" data-ride="false">
@@ -627,7 +620,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl1" src="./resources/chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl1" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -652,7 +645,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl2" src="./resources/open_chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl2" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -677,7 +670,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl3" src="./resources/sun.png" class="img-fluid"
+                                                            <img id="imglvl3" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -702,7 +695,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl4" src="./resources/Background.gif" class="img-fluid"
+                                                            <img id="imglvl4" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="mask flex-center">
 
@@ -725,7 +718,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl5" src="./resources/chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl5" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -753,7 +746,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl6" src="./resources/chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl6" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -778,7 +771,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl7" src="./resources/open_chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl7" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -795,15 +788,12 @@
                                                     </div>
                                                     <!-- Collection card -->
                                                 </div>
-                                                <!-- Grid column -->
-
-                                                <!-- Grid column -->
                                                 <div class="col mb-4">
                                                     <!-- Collection card -->
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl8" src="./resources/sun.png" class="img-fluid"
+                                                            <img id="imglvl8" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -828,7 +818,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl9" src="./resources/Background.gif" class="img-fluid"
+                                                            <img id="imglvl9" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="mask flex-center">
 
@@ -851,7 +841,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl10" src="./resources/chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl10" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -879,7 +869,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl11" src="./resources/chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl11" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -904,7 +894,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl12" src="./resources/open_chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl12" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -929,7 +919,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl13" src="./resources/sun.png" class="img-fluid"
+                                                            <img id="imglvl13" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -954,7 +944,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl14" src="./resources/Background.gif" class="img-fluid"
+                                                            <img id="imglvl14" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="mask flex-center">
 
@@ -977,7 +967,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl15" src="./resources/chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl15" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -1005,7 +995,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl16" src="./resources/chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl16" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -1030,7 +1020,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl17" src="./resources/open_chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl17" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -1055,7 +1045,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl18" src="./resources/sun.png" class="img-fluid"
+                                                            <img id="imglvl18" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -1080,7 +1070,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl19" src="./resources/Background.gif" class="img-fluid"
+                                                            <img id="imglvl19" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="mask flex-center">
 
@@ -1103,7 +1093,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl20" src="./resources/chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl20" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -1131,7 +1121,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl21" src="./resources/chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl21" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -1156,7 +1146,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl22" src="./resources/open_chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl22" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -1181,7 +1171,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl23" src="./resources/sun.png" class="img-fluid"
+                                                            <img id="imglvl23" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -1206,7 +1196,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl24" src="./resources/Background.gif" class="img-fluid"
+                                                            <img id="imglvl24" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="mask flex-center">
 
@@ -1229,7 +1219,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl25" src="./resources/chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl25" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -1257,7 +1247,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl26" src="./resources/chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl26" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -1282,7 +1272,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl27" src="./resources/open_chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl27" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -1307,7 +1297,7 @@
                                                     <div class="card collection-card z-depth-1-half">
                                                         <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl28" src="./resources/sun.png" class="img-fluid"
+                                                            <img id="imglvl28" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -1324,18 +1314,12 @@
                                                     </div>
                                                     <!-- Collection card -->
                                                 </div>
-                                                <!-- Grid column -->
-
-                                                <!-- Fourth column -->
                                                 <div class="col mb-4">
-                                                    <!-- Collection card -->
                                                     <div class="card collection-card z-depth-1-half">
-                                                        <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl29" src="./resources/Background.gif" class="img-fluid"
+                                                            <img id="imglvl29" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="mask flex-center">
-
                                                             </div>
                                                             <div class="stripe dark" id="lvl29">
                                                                 <a>
@@ -1345,17 +1329,12 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        <!-- Card image -->
                                                     </div>
-                                                    <!-- Collection card -->
                                                 </div>
-                                                <!-- Fourth column -->
                                                 <div class="col mb-4">
-                                                    <!-- Collection card -->
                                                     <div class="card collection-card z-depth-1-half">
-                                                        <!-- Card image -->
                                                         <div class="view zoom">
-                                                            <img id="imglvl30" src="./resources/chest_reward.png" class="img-fluid"
+                                                            <img id="imglvl30" src="" class="img-fluid"
                                                                  alt="" style="width: 200%; height: auto">
                                                             <div class="">
 
@@ -1368,29 +1347,19 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        <!-- Card image -->
                                                     </div>
-                                                    <!-- Collection card -->
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Slides -->
                                 </div>
-                                <!-- Carousel Wrapper -->
-
                             </section>
-                            <!--Section: Content-->
                         </div>
-                        <!-- Grid row -->
                     </section>
-                    <!--Section: Content-->
                 </div>
             </div>
-
             <div class="tab-pane fade" style="height: 100vh;" id="codes" role="tabpanel">
                 <div class="row mt-3">
-
                     <div class="col-6">
                         <div class="card">
                             <div class="card-header p-2" style="background-color: #7289da"></div>
@@ -1421,7 +1390,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="row mt-2">
                     <div class="col-lg-12">
@@ -1433,7 +1401,7 @@
                                         <div class="float-hover p-4">
                                             <div class="text-left">
                                                 <p class="title font-weight-bold text-light text-uppercase spacing mt-4 mx-4 fadeInDown animated">
-                                                    <i class="fas fa-square text-primary mr-2" aria-hidden="true"></i>
+                                                    <i class="fas fa-square mr-2" aria-hidden="true" style="color: #444397"></i>
                                                     <span class="font-weight-bold">
                                                                 Where can I get new codes?
                                                             </span>
@@ -1449,7 +1417,7 @@
                                         <div class="float-hover p-4">
                                             <div class="text-left">
                                                 <p class="title font-weight-bold text-light text-uppercase spacing mt-4 mx-4 fadeInDown animated">
-                                                    <i class="fas fa-square text-primary mr-2" aria-hidden="true"></i>
+                                                    <i class="fas fa-square mr-2" aria-hidden="true" style="color: #444397"></i>
                                                     <span class="font-weight-bold">
                                                                 I got an error while redeeming my code!
                                                             </span>
@@ -1467,7 +1435,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="tab-pane fade" id="settingsPanel" role="tabpanel">
                 <style>
                     [type=radio] {
@@ -1491,23 +1458,16 @@
                     }
                 </style>
                 <br>
-
                 <div class="row">
                     <div class="col-12">
                         <ul class="list-group mt-2">
                             <li id="RecoveryKey" class="list-group-item active h5-responsive text-light font-weight-bold"><a href="#" class="material-tooltip-main" data-toggle="tooltip" title="Below, you may find your recovery key. Copy the key below and keep it in a safe place in case you ever need to recover your account, or if you want to log in on another computer. Remember: keep this PRIVATE. Alternatively, if you would like to enter a recovery key you may do so below.">
-
                                 <span class="text-light" style="">Recovery Key<i class="far fa-question-circle text-white ml-2"></i></span></a></li>
                         </ul>
-
-
                     </div>
                 </div>
-
                 <div class="row mt-1">
-
                     <div class="col-6">
-
                         <div class="row mt-1">
                             <div class="container text-center">
                                 <div class="row justify-content-center">
@@ -1541,7 +1501,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-7">
                         <ul class="list-group mt-2">
@@ -1573,18 +1532,13 @@
                             });
                         </script>
                     </div>
-
                 </div>
-
                 <div class="row">
                     <div class="col-12">
                         <ul class="list-group mt-2">
                             <li id="RegionSelect" class="list-group-item active h5-responsive text-light font-weight-bold"><a href="#" class="material-tooltip-main" data-toggle="tooltip" title="Select the region closest to where you are located.">
-
                                 <span class="text-light" style="">Region Select<i class="far fa-question-circle text-white ml-2"></i></span></a></li>
                         </ul>
-
-
                     </div>
                 </div>
                 <style>
@@ -1644,7 +1598,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-5">
                         <ul class="list-group mt-2">
                             <li id="RunOnIdle" class="list-group-item active h5-responsive text-light font-weight-bold"><a href="#" class="material-tooltip-main" data-toggle="tooltip" title="When this setting is enabled, RBXIDLE will mine R$ in the background when your computer is not being used for 15 minutes at a low intensity. If you have a laptop, this will only take effect when you are currently charging in order to conserve battery life. When you begin to use your computer again, RBXIDLE will automatically stop mining.">
 
@@ -1656,36 +1610,21 @@
                         </div>
 
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
+                    <div class="col-7">
                         <ul class="list-group mt-2">
                             <li id="VersionNumber" class="list-group-item active h5-responsive text-light font-weight-bold">
-
-                                <span class="text-light">v<span class="text-light" id="version" style="">Version 2.0.12</span></span></li>
+                                <span class="text-light">Version <span class="text-light" id="version" style="">Version 2.0.12</span></span></li>
                         </ul>
-
-
                     </div>
                 </div>
-
-            <!--Grid column-->
-
         </div>
-        <!--Grid row-->
-
     </div>
 </div>
 </div>
-
-
-    <!-- Central Modal Medium Success -->
     <div class="modal fade" id="upModal" tabindex="-1" role="dialog" aria-labelledby="upModal"
          aria-hidden="true">
         <div class="modal-dialog modal-notify modal-success" role="document">
-            <!--Content-->
             <div class="modal-content">
-                <!--Header-->
                 <div class="modal-header">
                     <p class="heading lead">Download Progress</p>
 
@@ -1693,8 +1632,6 @@
                         <span aria-hidden="true" class="white-text">&times;</span>
                     </button>
                 </div>
-
-                <!--Body-->
                 <div class="modal-body">
                     <div class="text-center">
                         <div class="preloader-wrapper big active">
@@ -1713,35 +1650,24 @@
                         <p id="downProg">...%</p>
                     </div>
                 </div>
-
-                <!--Footer-->
                 <div class="modal-footer justify-content-center">
                     <p>RBXIDLE will automatically restart upon completion of the download.</p>
                 </div>
             </div>
-            <!--/.Content-->
         </div>
     </div>
-    <!-- Central Modal Medium Success-->
 <script
         src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>
-<script src="./handle.js" type="text/javascript"></script>
+
     <script src="./css/css5/intro.min.js" type="text/javascript"></script>
 <script>
 $(document).ready(function() {
-
     $('form').submit(function(){
         $(this).find('button[type=submit]').prop('disabled', true);
     });
-
-
-
-
-
 });
-
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -1749,12 +1675,10 @@ $(document).ready(function() {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.10.1/umd/popper.min.js"></script>
 <script>
     $(document).ready(function() {
-
         const $valueSpan = $('.valueSpan2');
         const $value = $('#intensity');
         $valueSpan.html($value.val());
         $value.on('input change', () => {
-
             $valueSpan.html($value.val());
         });
     });
@@ -1816,23 +1740,32 @@ $(document).ready(function() {
     });
 </script>
 <script>
-    $(document).ready(() => {
-        if(false)
-        {
-            Swal.fire({
-                title: 'Update!',
-                html: "UPDATE TEXT",
-                icon: 'info',
-                confirmButtonText: 'Awesome!'
-            });
+    $('.carousel.carousel-multi-item.v-2 .carousel-item').each(function(){
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
         }
+        next.children(':first-child').clone().appendTo($(this));
 
-
+        for (var i=0;i<4;i++) {
+            next=next.next();
+            if (!next.length) {
+                next=$(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
+        }
     });
 </script>
-
-
-
+<style>
+    .col-25 {
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+    .carousel-multi-item {
+        margin-bottom: 0rem;
+    }
+</style>
 <script src="./css/css4/js/bootstrap.js" type="text/javascript"></script>
 <script src="./css/css4/js/mdb.js" type="text/javascript"></script>
     <div class="modal fade" id="regSteamKey" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -1861,7 +1794,6 @@ $(document).ready(function() {
             <!--/.Content-->
         </div>
     </div>
-
     <div class="modal fade" id="premSteamKey" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" overflowScroll=false>
         <div class="modal-dialog modal-notify" role="document">
@@ -1927,111 +1859,41 @@ $(document).ready(function() {
     </div>
     <div class="modal fade" id="featuredModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" overflowScroll=false>
+        <style scoped>
+            #featuredModal .modal-dialog.modal-notify .modal-body {
+                padding: 0rem;
+            }
+            #featuredModal .rounded-bottom {
+                border-bottom-right-radius: 0rem !important;
+                border-bottom-left-radius: 0rem !important;
+            }
+        </style>
         <div class="modal-dialog modal-notify" style="max-width: 750px;" role="document">
-            <!--Content-->
             <div class="modal-content elegant-color">
-                <!--Header-->
-                <div class="modal-header bg-secondary">
-                </div>
-
-                <!--Body-->
                 <div class="modal-body">
-                    <div class="row">
 
-                        <!-- Grid column -->
-                        <div class="col-4 mb-4">
-
-                            <!-- Card -->
-                            <div class="card card-ecommerce">
-                                <div class="view overlay">
-                                    <img id="spotlightPic1" src="https://rbxsite.com/image/question.svg" class="img-fluid"
-                                         alt="Sample image">
-                                    <a>
-                                        <div class="mask rgba-white-slight"></div>
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-title mb-1"><p id="spotlightName1" class="dark-grey-text font-weight-bold"><strong>Coming Soon</strong></p></p>
-                                    <span class="badge badge-danger mb-2">New</span>
-                                    <div class="card-footer pb-0">
-                                        <div class="row mb-0 d-flex justify-content-center text-center">
-                                            <span class=""><strong><span class="text-success">R$</span><span id="spotlightCost1">???</span></strong></span>
-                                            <br>
-                                        </div>
-                                        <a id="spotlightGet1" class="btn btn-outline-primary" data-dismiss="modal">Redeem</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card -->
-
-                        </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-4 mb-4">
-
-                            <!-- Card -->
-                            <div class="card card-ecommerce">
-                                <div class="view overlay">
-                                    <img id="spotlightPic2" src="https://rbxsite.com/image/question.svg" class="img-fluid"
-                                         alt="Sample image">
-                                    <a>
-                                        <div class="mask rgba-white-slight"></div>
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-title mb-1"><strong><p id="spotlightName2" class="dark-grey-text font-weight-bold">Coming Soon</p></strong></p>
-                                    <span class="badge badge-danger mb-2">New</span>
-                                    <div class="card-footer pb-0">
-                                        <div class="row mb-0 d-flex justify-content-center text-center">
-                                            <span class=""><strong><span class="text-success">R$</span><span id="spotlightCost2">???</span></strong></span>
-                                            <br>
-                                        </div>
-                                        <button id="spotlightGet2" class="btn btn-outline-primary" data-dismiss="modal">Redeem</button>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card -->
-
-                        </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-4 mb-4">
-
-                            <!-- Card -->
-                            <div class="card card-ecommerce">
-                                <div class="view overlay">
-                                    <img id="spotlightPic3" src="https://rbxsite.com/image/question.svg" class="img-fluid"
-                                         alt="Sample image">
-                                    <a>
-                                        <div class="mask rgba-white-slight"></div>
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-title mb-1"><strong><p id="spotlightName3" class="dark-grey-text font-weight-bold">Coming Soon</p></strong></p>
-                                    <span class="badge badge-danger mb-2">New</span>
-                                    <div class="card-footer pb-0">
-                                        <div class="row mb-0 d-flex justify-content-center text-center">
-                                            <span class=""><strong><span class="text-success">R$</span><span id="spotlightCost3">???</span></strong></span>
-                                            <br>
-                                        </div>
-                                        <button id="spotlightGet3" class="btn btn-outline-primary" data-dismiss="modal">Redeem</button>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card -->
-
-                        </div>
-                        <!-- Grid column -->
-
+                    <div id="featuredModalBody">
                     </div>
                 </div>
             </div>
-            <!--/.Content-->
+        </div>
+    </div>
+    <div class="modal fade" id="petModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" overflowScroll=false>
+        <style scoped>
+            #petModal .modal-dialog.modal-notify .modal-body {
+                padding: 0rem;
+            }
+            #petModal .rounded-bottom {
+                border-bottom-right-radius: 0rem !important;
+                border-bottom-left-radius: 0rem !important;
+            }
+        </style>
+        <div class="modal-dialog modal-notify" style="max-width: 750px;" role="document">
+            <div class="modal-content elegant-color">
+                <div class="modal-body" id="petModalBody">
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal fade" id="modalKeyInput" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="modalKeyInput"
@@ -2063,16 +1925,13 @@ $(document).ready(function() {
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <!--Header-->
                 <div class="modal-header">
                     <h4 class="modal-title" id="myModalLabel">Your keys</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <!--Body-->
                 <div class="modal-body">
-
                     <table class="table table-hover" id="keystable">
                         <thead>
                         <tr>
@@ -2087,18 +1946,18 @@ $(document).ready(function() {
                         </tr>
                         </tbody>
                     </table>
-
                 </div>
-                <!--Footer-->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <link rel="stylesheet" href="./css/ChangeColorsEasy.css">
-
-    <!-- Central Modal Medium Success-->
 <script type="text/javascript">(function(){window['__CF$cv$params']={r:'6de1a1d0feff3010',m:'X2K3iYFoG7z.l8HtSTl0lCq39MDdkymuPPEr.vqnOEo-1644960571-0-AaG9WV+aoW7zSb6VjY4weLvBTj00P1VVuXmcb9739caTYmnHQ/3hER6hNPr48WiLzQHXeN49XlnxovJpdPqkvI4ZwqnD5MroqpIgoDYxrQ1oAfkCsbHiCWLAas81m/WuZ1O5HPWarnkulL+iJ0kgS9tBHu4w/xfgeN5AN9OE1xDA7ImpMunSqmHekmRiJGkniQ==',s:[0xd24e285c87,0x1a804e32b0],}})();</script></body>
+<script src="./handle.js" type="text/javascript"></script>
+<script>
+    setTimeout(function(){
+        $('#loading').fadeOut(400);
+    }, 2000);
+</script>
 </html>

@@ -1,0 +1,2104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>RBXIDLE</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/css4/css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/css4/css/mdb.min.css" />
+    <link rel="stylesheet" href="./css/css5/introjs.min.css" />
+
+    <link rel="stylesheet" href="./css/css4/css/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script async src='/cdn-cgi/bm/cv/669835187/api.js'></script></head>
+<body class="" style="border-radius: 25px 25px 25px 25px;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+<nav id="TopBar" class="navbar navbar-dark primary-color" style="height: 5vh;">
+    <div class="navbar-brand pt-0 mt-n1" href="#">
+        <img src="./resources/hat.png" height="30" alt="mdb logo"><span class="text-white ml-2" style="font-size: 1em; font-family: 'Kanit', sans-serif;">RBXIDLE</span>
+    </div>
+    <ul class="navbar-nav ml-auto nav-flex-icons pt-0 mt-n2">
+        <li class="nav-item px-3">
+            <div class="" id="minReq">
+                <i class="text-white fas fa-minus"></i>
+            </div>
+        </li>
+        <li class="nav-item px-2" >
+            <div class="" id="closeReq">
+                <i class="text-white fas fa-times"></i>
+            </div>
+        </li>
+    </ul>
+</nav>
+<style>
+    .modal{
+        overflow:hidden;
+    }
+    .modal-body{
+        overflow:auto;
+    }
+    .modal-scrollbar-measure {
+        overflow: hidden !Important; }
+    .modal-open {
+        overflow: hidden;
+    }
+    body.modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom { 	margin-right: 0; overflow: hidden;!important; }
+    body{
+        overflow: hidden;
+        overflow-x: hidden;
+        background-color: #2E2E2E;
+        max-height: 100vh;
+    }
+    .introjs-tooltip {
+        background-color: rgba(000, 0, 0, 0.5);
+        color: #fff;
+    }
+
+    .introjs-button,
+    .introjs-button:hover, .introjs-button:focus, .introjs-button:active,
+    .introjs-disabled, .introjs-disabled:focus, .introjs-disabled:hover {
+        outline: none;
+        background-image: none;
+        background-color: transparent;
+        color: #fff;
+        border: 1px solid transparent;
+        border-radius: 50px;
+        box-shadow: none;
+        border-shadow: none;
+        text-shadow: none;
+    }
+
+    .introjs-button:hover, .introjs-button:focus, .introjs-button:active {
+        border: 1px solid #fff
+    }
+    .introjs-disabled, .introjs-disabled:focus, .introjs-disabled:hover {
+        color: #ccc;
+        border: 1px solid transparent;
+    }
+
+    .introjs-arrow {
+        border: 10px solid #fff;
+    }
+    .introjs-arrow.top, .introjs-arrow.top-middle, .introjs-arrow.top-right {
+        border-color: transparent transparent rgba(000, 0, 0, 0.5);
+        top: -20px;
+        left: 20px;
+    }
+    .introjs-arrow.bottom, .introjs-arrow.bottom-middle, .introjs-arrow.bottom-right {
+        border-color: rgba(000, 0, 0, 0.5) transparent transparent;
+        bottom: -20px;
+        left: 20px;
+    }
+    .introjs-arrow.left, .introjs-arrow.right {
+        top: 20px;
+    }
+    .introjs-arrow.left-bottom, .introjs-arrow.right-bottom {
+        bottom: 20px;
+    }
+
+    .introjs-arrow.left, .introjs-arrow.left-bottom {
+        left: -20px;
+        border-color: transparent rgba(000, 0, 0, 0.5) transparent transparent;
+    }
+    .introjs-arrow.right, .introjs-arrow.right-bottom {
+        right: -20px;
+        border-color: transparent transparent transparent rgba(000, 0, 0, 0.5);
+    }
+
+    .introjs-fixParent {
+        position: absolute;
+    }
+    .progress-bar-vertical {
+        min-height: 200px;
+        background: #AB6D23;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        align-items: flex-end;
+        -webkit-align-items: flex-end
+    }
+
+
+
+    .progress-bar-vertical {
+        min-height: 200px;
+        background: #3b3b3b;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        align-items: flex-end;
+        -webkit-align-items: flex-end
+    }
+
+    .progress-bar-vertical .progress-bar {
+        width: 100%;
+        height: 0;
+        -webkit-transition: height 0.6s ease;
+        -o-transition: height 0.6s ease;
+        transition: height 0.6s ease
+    }
+</style>
+<style>
+    #exampleFormControlSelect1 {
+        color: whitesmoke !important;
+        background: #4285F4 !important;
+    }
+    .list-group .list-group-item {
+        border-bottom-right-radius: .35rem;
+        border-bottom-left-radius: .35rem;
+    }
+    .list-group-item {
+        border: 0px;
+    }
+</style>
+<link rel="stylesheet" href="../orangeStyle.css" id="light">
+<div class="">
+
+    <!--Grid row-->
+    <div class="row">
+
+        <!--Grid column-->
+        <div id="Chartbg1" class="col-md-2 elegant-color-dark pr-0 align-items-end" style="height: 95vh; border-radius: 0px 10px 25px 0px;position: relative;">
+
+            <ul class="nav md-pills pills-primary d-flex flex-column">
+                <li class="nav-item" style="border-radius: 0px 25px 25px 0px;">
+                    <a id="Side" class="nav-link active" data-toggle="tab" href="#homepanel" role="tab"><i id="Idk" class="fas fa-home fa-4x"></i></a>
+                </li>
+                <li class="nav-item" id="wallet">
+                    <a class="nav-link" data-toggle="tab" href="#withdrawpanel" role="tab"><i class="fas fa-wallet fa-4x"></i></a>
+                </li>
+                <li class="nav-item" id="levels">
+                    <a class="nav-link" data-toggle="tab" href="#panel13" role="tab"><i class="fas fa-gem fa-4x"></i></a>
+                </li>
+                <li class="nav-item" id="codesI">
+                    <a class="nav-link" data-toggle="tab" href="#codes" role="tab"><i class="fas fa-meteor fa-4x"></i></a>
+                </li>
+                <li class="nav-item" id="settings">
+                    <a class="nav-link" data-toggle="tab" href="#settingsPanel" role="tab"><i class="fas fa-sliders-h fa-4x"></i></a>
+                </li>
+            </ul>
+            <div id="statusDiv" class="alert alert-warning mb-0" style="border-radius: 0px 6px 24px 0px; position: absolute;
+  bottom: 0;" role="alert">
+                <i id="statusIcon" class="fas fa-exclamation-triangle me-3 mr-1"></i>RBXIDLE is currently <strong><span class="font-weight-bold" id="status">IDLE</span></strong>
+            </div>
+
+        </div>
+        <!--Grid column-->
+<script></script>
+        <!--Grid column-->
+        <div class="col-md-10 mb-4">
+
+            <!-- Tab panels -->
+            <div class="tab-content pt-0">
+
+                <!--Panel 1-->
+                <div class="tab-pane fade in show active" id="homepanel" role="tabpanel">
+                    <div class="row mt-3">
+                        <div class="col-9">
+                            <div class="">
+
+
+                                <!--Section: Block Content-->
+                                <section>
+
+                                    <div class="card primary-color">
+                                        <div id="ChartBg" class="card-body">
+
+                                            <p class="h5 white-text pb-4 mb-3"><i class="fas fa-chart-pie px-2"></i>3h Earnings</p>
+
+                                            <canvas id="lineChart1" class="mb-4" height="100"></canvas>
+
+                                        </div>
+                                    </div>
+
+
+                                </section>
+                                <!--Section: Block Content-->
+
+
+                            </div>
+                        </div>
+                        <div id="ProgressB1" class="col-3">
+                            <div id="ProgressB2" class="card pb-2 elegant-color">
+                                <div id="ProgressBackground" class="card-body text-center mx-2">
+                                    <div id="ProgressBar" class="progress progress-bar-vertical">
+                                        <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" id="uptimeIndicatorBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="height: 0%; border-radius: 4px 4px 0px 0px;"> </div>
+                                    </div>
+                                    <hr style="border-top: 1px solid white;">
+                                    <a href="#" class="material-tooltip-main" id="uptimeIndicator" data-toggle="tooltip" title="This represents the total amount of time out of the past 24 hours that RBXIDLE was running. Bonus multipliers are available for higher uptime percentages, up to 2x at 100%!">
+
+                                        <span class="text-uppercase text-light" style="font-size: .9em;"><strong><span id="uptimePercent" style="font-size: .9em;">0% </span>Uptime</strong><i class="far fa-question-circle text-white ml-1"></i></span></a>
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-4 pr-0">
+                            <div class="ml-0 card elegant-color">
+
+
+                                <div id="Smallbg" class="">
+                                    <i id="MoneySymbol" class="far fa-money-bill-alt fa-lg primary-color z-depth-2 p-4 ml-3 mt-3 rounded text-white"></i>
+                                    <div class="float-right text-right p-3">
+                                        <p class="text-uppercase text-light mb-1"><small>Balance</small></p>
+                                        <h4 class="font-weight-bold text-white mb-0"><span id="rbxIndicator">0</span><span class="text-success"> R$</span></h4>
+                                    </div>
+                                </div>
+
+                                <div id="Smallbg1" class="card-body pt-0 text-center" style="height: auto;">
+                                    <div class="progress md-progress">
+                                        <div id="LineBelowBalance" class="progress-bar bg-success" role="progressbar" style="width: 100%; height:10px" aria-valuenow="75" aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                    </div>
+                                    <a href="#" class="material-tooltip-main" id="uptimeIndicator" data-toggle="tooltip" title="This number represents the estimated amount of R$ you would earn per day if you ran RBXIDLE constantly. Running RBXIDLE will collect data in order to make this number more accurate. In order to get your first estimate, you must earn your first R$.">
+
+                                        <span class="text-light" style="font-size: .9em;"><strong><span class="card-text" id="estTXT"><span id="estEarn" class="font-weight-bold"></span> <span class="text-success font-weight-bold">R$</span> Estimated Daily</span><i class="far fa-question-circle text-white ml-2"></i></strong></span></a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="card elegant-color card-list">
+                                <div id="DetectingHardware" class="card-header bg-primary d-flex justify-content-between align-items-center py-3">
+                                    <p class="h5-responsive text-light font-weight-bold mb-0">Detected Hardware<span id="refHardware" class="badge badge-pill badge-warning ml-2">Refresh</span></p>
+                                </div>
+                                <div id="GraphicsCardBG" class="card-body pb-0">
+                                    <table class="table">
+                                        <tbody>
+                                        <tr>
+                                            <td><span class="text-light" id="gCard">GRAPHICS CARD</span></td>
+
+                                            <td><span id="supBadge" class="badge text-light badge-success">Turbo Supported</span></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><span class="text-light" id="cpuName">None Found</span></td>
+                                            <td><span id="supBadge1" class="badge text-light badge-info">Supported</span></td>
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 pr-0 mt-n5">
+                            <div class="card ml-0 mr-0 card-ecommerce elegant-color" style="overflow: hidden; border-radius: 3px 3px 3px 3px">
+                                <canvas id="minerCanvas">
+
+                                    <!--
+                                        <div class="col-6 d-flex align-items-center">
+
+                                            <div class="view overlay">
+                                                <img src="img/question.svg" style="height:150px;" class="ml-4 img-fluid" alt="Sample image">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-6 pl-sm-0 px-md-3 pl-lg-0">
+
+                                            <div class="card z-depth-0 elegant-color">
+                                              <div class="card-body">
+                                                    <h4 class="card-title mt-2 mb-1"><strong><a href="" class="text-light">Pet</a></strong></h4>
+                                                    <hr class="mt-0 mb-1" style="border-top: 1px solid white;">
+                                                    <h5 class="card-title mb-1"><a href="" class="text-light">None</a></h5>
+                                                    <span class="badge badge-warning text-light mb-2">Inactive</span>
+                                                </div>
+
+                                            </div>-->
+                                </canvas>
+
+                            </div>
+                            <!-- Grid column -->
+
+                        </div>
+                        <!-- Grid row -->
+
+
+
+                        <div id="supMine" class="col-4 mt-3">
+                            <div id="supMine1" class="card elegant-color">
+                                <div class="card-body">
+                                    <form>
+                                        <div class="btn-group dropup ml-3" id="startMiningDiv">
+                                            <button type="button" id="StartMining" class="btn btn-success my-0" style="max-height:50px;">Start</button>
+                                            <button type="button" id="StartMining2" class="btn btn-success dropdown-toggle my-0 px-3" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <button class="dropdown-item" id="prioAlt" href="#">Alt. Miner</button>
+                                                <div class="dropdown-divider"></div>
+                                                <button class="dropdown-item" id="prioDef" href="#">Default Miner</button>
+                                            </div>
+                                        </div>
+                                        <button type="button" id="stopBTN" class="btn btn-danger btn-block" style="max-height:50px;" hidden>Stop Mining</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4 mt-3">
+                            <div id="supMine2" class="card elegant-color">
+                                <div class="card-body">
+                                    <form>
+                                        <button type="button" id="StartLegacy" class="btn btn-info btn-block" style="max-height:50px;">Start CPU</button>
+                                        <button type="button" id="stopLegacy" class="btn btn-danger btn-block" style="max-height:50px;" hidden>Stop CPU</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--/.Panel 1-->
+
+                <!--Panel 2-->
+                <div class="tab-pane fade" style="height: 100vh;" id="withdrawpanel" role="tabpanel">
+                    <div class="row mt-3">
+
+                        <div class="col-6">
+                            <div class="card z-index-1 hoverable mb-4" data-toggle="modal" data-target="#nitroRedeemModal">
+                                <div class="card-header p-1" style="background-color: #7289da"></div>
+                                <div id="DiscordBG" class="card-body elegant-color">
+                                    <div class="row align-items-center text-light">
+                                        <div class="col-6 px-1">
+                                            <a>
+                                                <strong class="font-weight-bold"><i class="fab fa-discord mr-1" style="color: #7289da"></i> Nitro</strong>
+                                            </a>
+                                            <h6 class="h6-responsive font-weight-bold grey-text">
+                                                <strong><span class="text-success">R$</span>1000-1950</strong>
+                                            </h6>
+                                        </div>
+                                        <div class="col-6">
+
+                                            <small>
+                                                Receive a Discord Nitro link!
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="carousel" class="carousel slide mt-3" data-wrap="false" data-interval="false" data-ride="false">
+                                <div class="" role="listbox">
+                                    <div class="carousel-item active">
+                                        <div class="card z-index-1 hoverable mb-4">
+                                            <div class="card-header p-1 bg-success"></div>
+                                            <div id="RobuxBG" class="card-body elegant-color">
+                                                <div class="row align-items-center text-light" id="chooseBobux">
+                                                    <div class="col-6 px-1">
+                                                        <a>
+                                                            <strong class="font-weight-bold">Robux</strong>
+                                                        </a>
+                                                        <h6 class="h6-responsive font-weight-bold grey-text">
+                                                            <strong><span class="text-success">R$</span>10-500</strong>
+                                                        </h6>
+                                                    </div>
+                                                    <div class="col-6">
+
+                                                        <small>
+                                                            Have your Robux instantly sent to your account!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card z-index-1 hoverable mb-4" data-toggle="modal" data-target="#premSteamKey">
+                                            <div class="card-header p-1 bg-warning"></div>
+                                            <div id="SteamKeysBG" class="card-body elegant-color">
+                                                <div class="row align-items-center text-light">
+                                                    <div class="col-6 px-1">
+                                                        <a>
+                                                            <strong class="font-weight-bold">Premium Steam Key</strong>
+                                                        </a>
+                                                        <h6 class="h6-responsive font-weight-bold grey-text">
+                                                            <strong><span class="text-success">R$</span>750</strong>
+                                                            <span class="grey-text">
+                    <small>
+                      <s><span class="text-success">R$</span>1500</s>
+                    </small>
+                  </span>
+                                                        </h6>
+                                                    </div>
+                                                    <div class="col-6">
+
+                                                        <small>
+                                                            Assortment including the Fallout series, Civilization series, Borderlands series, and more!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card z-index-1 hoverable mb-4" data-toggle="modal" data-target="#featuredModal">
+                                            <div class="card-header p-1 bg-secondary"></div>
+                                            <div id="RewardsSpotlightBG" class="card-body elegant-color">
+                                                <div class="row align-items-center text-light" id="particles-js">
+                                                    <div class="col-6 px-1">
+                                                        <a>
+                                                            <strong class="font-weight-bold">Rewards Spotlight</strong>
+                                                        </a>
+                                                        <h6 class="h6-responsive font-weight-bold grey-text">
+                                                            <strong><span class="text-success">R$</span>???</strong>
+
+                                                        </h6>
+                                                    </div>
+                                                    <div class="col-6">
+
+                                                        <small>
+                                                            Hand picked rewards including games, gift cards, and more!
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="card elegant-color">
+                                            <div class="card-body">
+                                                <div class="card-title text-light text-center">Please enter the amount of points you would like to withdraw:</div>
+                                                <hr style="background-color: white;">
+                                                <div class="card-text text-center"><div class="md-form">
+                                                    <input type="number" id="withAmount" class="form-control text-white">
+                                                    <label for="withAmount">Points</label>
+                                                    <button type="submit" id="back2" style="height: 50px; width: 150px; max-height: 50px; max-width: 150px;" class="btn mt-2 btn-danger">Back</button>
+                                                    <button type="submit" id="confirmPoints" style="height: 50px; width: 150px; max-height: 50px; max-width: 150px;" class="btn mt-2 btn-success">Continue</button>
+                                                    <div class="card-body pt-0 text-center" style="height: auto;">
+                                                        <div class="progress md-progress">
+                                                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%; height:10px" aria-valuenow="75" aria-valuemin="0"
+                                                                 aria-valuemax="100"></div>
+                                                        </div>
+                                                        <p class="card-text"><span id="outOf100">0</span>% to withdraw minimum</p>
+                                                    </div>
+                                                </div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="card elegant-color">
+                                            <div class="card-body">
+                                                <div class="card-title text-light text-center">Enter the following information:</div>
+                                                <p class="text-muted text-center"><small>Currently withdrawing <span id="withAm">0</span><span class="text-success"> R$</span></small> </p>
+                                                <hr style="background-color: white;">
+                                                <div class="card-text text-center"><div class="md-form">
+                                                    <p class="text-light">Set your private server price to EXACTLY <span id="servAm">0</span><span class="text-success"> R$</span></p>
+                                                    <div class="md-form">
+                                                        <input type="text" id="gameID" class="form-control text-white">
+                                                        <label for="gameID">Game ID</label>
+                                                    </div>
+                                                    <button type="submit" id="back" style="height: 50px; width: 150px; max-height: 50px; max-width: 150px;" class="btn mt-2 btn-danger">Back</button>
+                                                    <button type="submit" id="confirmWith" style="height: 50px; width: 150px; max-height: 50px; max-width: 150px;" class="btn mt-2 btn-success">Continue</button>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card elegant-color card-list">
+                                <div id="RecentWithdrawal" class="card-header bg-primary py-3">
+                                    <p class="h5-responsive text-light font-weight-bold mb-0">Recent Withdrawals <span id="ViewKeys" class="badge badge-pill badge-success" data-toggle="modal" data-target="#keyModal">View Keys</span></p>
+                                </div>
+                                <div id="RecentWithdrawBelow" class="card-body pb-0">
+                                    <table class="table" id="withdrawTable">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col" class="text-light"><span class="text-success">R$</span> Amount</th>
+                                            <th scope="col" class="text-light">Status</th>
+                                            <th scope="col" class="text-light">Info</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card elegant-color card-list mt-2">
+                                <div id="WithdrawalTutorial1" class="card-header bg-primary py-3">
+                                    <p id="WithdrawalTutorial" class="h5-responsive text-light font-weight-bold mb-0">Withdrawal Tutorial</p>
+                                </div>
+                                <div id="WithdrawalTutorial2" class="card-body pb-0">
+                                    <div class="">
+                                        <iframe width="320em;" height="192em;" src="https://www.youtube.com/embed/0SsMLRgA29o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+                    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+                <div class="row mt-3">
+                    <div class="col-6 mt-n5">
+
+                    </div>
+                    <div class="col-6">
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!--/.Panel 2-->
+
+            <!--Panel 3-->
+            <div class="tab-pane fade" id="panel13" role="tabpanel">
+                <div id="LvlsBG" class="card-header bg-primary py-3 pt-2 mt-2">
+                    <p class="h5-responsive text-light font-weight-bold mb-0">Mining Levels</p>
+                </div>
+                <div class="container pt-3">
+                    <!--Section: Content-->
+                    <section class="dark-grey-text text-center">
+
+
+                        <p class="text-light w-responsive mx-auto mb-1">Earn XP simply by mining; more uptime means more XP bonuses!</p>
+                        <p class="text-light w-responsive mx-auto mb-2">Progress to next level: <span class="text-success font-weight-bold" id="lvlperc"></span>%</p>
+
+                        <hr style="border:1px solid whitesmoke;">
+
+                        <div class="container mt-2" style="padding-left: 0px">
+
+
+                            <!--Section: Content-->
+                            <section class="dark-grey-text text-center">
+                                <!-- Carousel Wrapper -->
+                                <div id="multi-item-example" class="carousel slide carousel-multi-item" data-interval="false" data-ride="false">
+                                    <!-- Controls -->
+                                    <div class="controls-top">
+                                        <a class="btn-floating primary-color waves-effect waves-light" href="#multi-item-example" data-slide="prev">
+                                            <i id="Arrow1" class="fas fa-chevron-left"></i>
+                                        </a>
+                                        <a class="btn-floating primary-color waves-effect waves-light" href="#multi-item-example" data-slide="next">
+                                            <i id="Arrow2" class="fas fa-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                    <ol class="carousel-indicators mb-n3">
+                                        <li id="ChangeLvlTab1" class="primary-color active" data-target="#multi-item-example" data-slide-to="0"></li>
+                                        <li id="ChangeLvlTab2" class="primary-color" data-target="#multi-item-example" data-slide-to="1"></li>
+                                        <li id="ChangeLvlTab3" class="primary-color" data-target="#multi-item-example" data-slide-to="2"></li>
+                                        <li id="ChangeLvlTab4" class="primary-color" data-target="#multi-item-example" data-slide-to="3"></li>
+                                        <li id="ChangeLvlTab5" class="primary-color" data-target="#multi-item-example" data-slide-to="4"></li>
+                                        <li id="ChangeLvlTab6" class="primary-color" data-target="#multi-item-example" data-slide-to="5"></li>
+                                    </ol>
+                                    <div class="carousel-inner" role="listbox">
+                                        <style>
+                                            .stripe {
+                                                font-size: .75em;
+                                                bottom: 6rem !important;
+                                            }
+                                            .collection-card .stripe {
+                                                bottom: 3rem;
+                                                padding: 1rem;
+                                            }
+                                        </style>
+                                        <div class="carousel-item active">
+                                            <div class="row d-flex justify-content-center">
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl1" src="./resources/chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl1">
+                                                                <a>
+                                                                    <p>Lvl 1
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl2" src="./resources/open_chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark mt-n5" id="lvl2">
+                                                                <a>
+                                                                    <p>Level 2
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl3" src="./resources/sun.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl3">
+                                                                <a>
+                                                                    <p>Level 3
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Fourth column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl4" src="./resources/Background.gif" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="mask flex-center">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl4">
+                                                                <a>
+                                                                    <p>Level 4
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Fourth column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl5" src="./resources/chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl5">
+                                                                <a>
+                                                                    <p>Lvl 5
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="row d-flex justify-content-center">
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl6" src="./resources/chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl6">
+                                                                <a>
+                                                                    <p>Lvl 1
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl7" src="./resources/open_chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark mt-n5" id="lvl7">
+                                                                <a>
+                                                                    <p>Level 2
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl8" src="./resources/sun.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl8">
+                                                                <a>
+                                                                    <p>Level 3
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Fourth column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl9" src="./resources/Background.gif" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="mask flex-center">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl9">
+                                                                <a>
+                                                                    <p>Level 4
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Fourth column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl10" src="./resources/chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl10">
+                                                                <a>
+                                                                    <p>Lvl 5
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="row d-flex justify-content-center">
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl11" src="./resources/chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl11">
+                                                                <a>
+                                                                    <p>Lvl 1
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl12" src="./resources/open_chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark mt-n5" id="lvl12">
+                                                                <a>
+                                                                    <p>Level 2
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl13" src="./resources/sun.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl13">
+                                                                <a>
+                                                                    <p>Level 3
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Fourth column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl14" src="./resources/Background.gif" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="mask flex-center">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl14">
+                                                                <a>
+                                                                    <p>Level 4
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Fourth column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl15" src="./resources/chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl15">
+                                                                <a>
+                                                                    <p>Lvl 5
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="row d-flex justify-content-center">
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl16" src="./resources/chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl16">
+                                                                <a>
+                                                                    <p>Lvl 1
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl17" src="./resources/open_chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark mt-n5" id="lvl17">
+                                                                <a>
+                                                                    <p>Level 2
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl18" src="./resources/sun.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl18">
+                                                                <a>
+                                                                    <p>Level 3
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Fourth column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl19" src="./resources/Background.gif" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="mask flex-center">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl19">
+                                                                <a>
+                                                                    <p>Level 4
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Fourth column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl20" src="./resources/chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl20">
+                                                                <a>
+                                                                    <p>Lvl 5
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="row d-flex justify-content-center">
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl21" src="./resources/chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl21">
+                                                                <a>
+                                                                    <p>Lvl 1
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl22" src="./resources/open_chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark mt-n5" id="lvl22">
+                                                                <a>
+                                                                    <p>Level 2
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl23" src="./resources/sun.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl23">
+                                                                <a>
+                                                                    <p>Level 3
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Fourth column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl24" src="./resources/Background.gif" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="mask flex-center">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl24">
+                                                                <a>
+                                                                    <p>Level 4
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Fourth column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl25" src="./resources/chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl25">
+                                                                <a>
+                                                                    <p>Lvl 5
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <div class="row d-flex justify-content-center">
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl26" src="./resources/chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl26">
+                                                                <a>
+                                                                    <p>Lvl 1
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl27" src="./resources/open_chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark mt-n5" id="lvl27">
+                                                                <a>
+                                                                    <p>Level 2
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Grid column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl28" src="./resources/sun.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl28">
+                                                                <a>
+                                                                    <p>Level 3
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Grid column -->
+
+                                                <!-- Fourth column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl29" src="./resources/Background.gif" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="mask flex-center">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl29">
+                                                                <a>
+                                                                    <p>Level 4
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                                <!-- Fourth column -->
+                                                <div class="col mb-4">
+                                                    <!-- Collection card -->
+                                                    <div class="card collection-card z-depth-1-half">
+                                                        <!-- Card image -->
+                                                        <div class="view zoom">
+                                                            <img id="imglvl30" src="./resources/chest_reward.png" class="img-fluid"
+                                                                 alt="" style="width: 200%; height: auto">
+                                                            <div class="">
+
+                                                            </div>
+                                                            <div class="stripe dark" id="lvl30">
+                                                                <a>
+                                                                    <p>Lvl 5
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </p>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Card image -->
+                                                    </div>
+                                                    <!-- Collection card -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Slides -->
+                                </div>
+                                <!-- Carousel Wrapper -->
+
+                            </section>
+                            <!--Section: Content-->
+                        </div>
+                        <!-- Grid row -->
+                    </section>
+                    <!--Section: Content-->
+                </div>
+            </div>
+
+            <div class="tab-pane fade" style="height: 100vh;" id="codes" role="tabpanel">
+                <div class="row mt-3">
+
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header p-2" style="background-color: #7289da"></div>
+                            <div id="DiscordBGCodes" class="card-body elegant-color">
+                                <h4 class="card-title h5-responsive text-light font-weight-bold text-center">Discord</h4>
+                                <hr>
+                                <p class="text-light text-center">Join our Discord to get access to all of our promo-codes & giveaways!</p>
+                                <button id="discordSub" style="max-height: 46px; max-width: 337px;" target="_blank" class="btn btn-discord btn-block waves-effect waves-light">
+                                    <i class="fab fa-discord mr-1"></i> Join
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header p-2 primary-color" style=""></div>
+                            <div id="RedeemCodeBG" class="card-body elegant-color">
+                                <p class="card-title text-light h5-responsive font-weight-bold text-center">Redeem Code</p>
+                                <div class="text-center" style="color: #757575;">
+                                    <div class="md-form">
+                                        <input type="text" id="Code" class="form-control" placeholder="Code" autofocus="">
+                                    </div>
+                                    <button class="btn btn-primary btn-block waves-effect waves-light" style="max-height: 46px; max-width: 337px;" id="ClaimCode">
+                                        Claim
+                                    </button>
+                                    <h5 class="card-text text-center"><small class="text-muted">Codes are one-time use only.</small></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row mt-2">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <p id="FAQTop" class="card-header primary-color h4-responsive p-4 text-center font-weight-bold text-light"><span class="card-title">Frequently Asked Questions</span></p>
+                            <div id="FAQBottom" class="card-body elegant-color">
+                                <div class="row justify-content-center">
+                                    <div class="col-6 m-15px-tb mb-2 d-flex align-items-stretch text-center wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">
+                                        <div class="float-hover p-4">
+                                            <div class="text-left">
+                                                <p class="title font-weight-bold text-light text-uppercase spacing mt-4 mx-4 fadeInDown animated">
+                                                    <i class="fas fa-square text-primary mr-2" aria-hidden="true"></i>
+                                                    <span class="font-weight-bold">
+                                                                Where can I get new codes?
+                                                            </span>
+                                                </p>
+                                                <p class="mx-4 text-light">
+                                                    You can find new codes mainly on our Discord server, but also on our YouTube channel!
+                                                    <br>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 m-15px-tb mb-4 d-flex align-items-stretch text-center wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">
+                                        <div class="float-hover p-4">
+                                            <div class="text-left">
+                                                <p class="title font-weight-bold text-light text-uppercase spacing mt-4 mx-4 fadeInDown animated">
+                                                    <i class="fas fa-square text-primary mr-2" aria-hidden="true"></i>
+                                                    <span class="font-weight-bold">
+                                                                I got an error while redeeming my code!
+                                                            </span>
+                                                </p>
+                                                <p class="mx-4 text-light">
+                                                    The code you entered does not exist or if you are sure the code exists then the code could be expired.
+                                                    <br>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="settingsPanel" role="tabpanel">
+                <style>
+                    [type=radio] {
+                        opacity: 0;
+                    }
+
+                    /* IMAGE STYLES */
+                    [type=radio] + img {
+                        cursor: pointer;
+                    }
+
+                    /* CHECKED STYLES */
+                    [type=radio]:checked + img {
+                        outline: 2px solid #00c851;
+
+                    }
+
+                    [type=radio]:checked + div{
+                        outline: 2px solid #00c851;
+
+                    }
+                </style>
+                <br>
+
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="list-group mt-2">
+                            <li id="RecoveryKey" class="list-group-item active h5-responsive text-light font-weight-bold"><a href="#" class="material-tooltip-main" data-toggle="tooltip" title="Below, you may find your recovery key. Copy the key below and keep it in a safe place in case you ever need to recover your account, or if you want to log in on another computer. Remember: keep this PRIVATE. Alternatively, if you would like to enter a recovery key you may do so below.">
+
+                                <span class="text-light" style="">Recovery Key<i class="far fa-question-circle text-white ml-2"></i></span></a></li>
+                        </ul>
+
+
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+
+                    <div class="col-6">
+
+                        <div class="row mt-1">
+                            <div class="container text-center">
+                                <div class="row justify-content-center">
+                                    <form>
+                                        <div class="text-light pb-1">View Recovery Key</div>
+                                        <div class="form-group">
+                                            <div class="input-group" id="show_hide_password">
+                                                <input class="form-control" id="ketLoc" type="password" value="PKEY" disabled>
+                                                <div class="input-group-addon">
+                                                    <a href=""><i class="fa fa-eye-slash pt-1 pl-1" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="container mt-1 justify-content-center text-center">
+                            <div class="text-light pb-1">Enter Recovery Key</div>
+                            <form class="form-inline" style="display: block;">
+
+                                <label class="sr-only" for="revoceryKeyI">Recovery key</label>
+                                <input type="text" class="form-control mb-2 mr-sm-2" id="revoceryKeyI" placeholder="Recovery Key">
+
+                                <button id="recoverySubmit" class="btn btn-primary btn-md mt-0" style="max-height: 40px; max-width: 96px;">Submit</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-7">
+                        <ul class="list-group mt-2">
+                            <li id="EarningsBoost" class="list-group-item active h5-responsive text-light font-weight-bold"><a href="#" class="material-tooltip-main" data-toggle="tooltip" title="If you have an NVIDIA 3000 series graphics card, you may disable this setting if you are having mining trouble, which may solve issues. This setting is intended to raise your earnings when enabled.">
+
+                                <span class="text-light" style="">Earnings Boost (NVIDIA 3000 series)<i class="far fa-question-circle text-white ml-2"></i></span></a></li>
+                        </ul>
+
+                        <div class="d-flex justify-content-center my-4">
+                            <button id="lhrSwitch" type="button" class="btn btn-success btn-rounded" disabled>Enabled</button>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <ul class="list-group mt-2">
+                            <li id="ChangeTheme" class="list-group-item active h5-responsive text-light font-weight-bold"><a href="#" class="material-tooltip-main" data-toggle="tooltip" title="Select a theme to change the appearance of RBXIDLE! These can be earned from levels or are periodically given away in our Discord server!">
+
+                                <span class="text-light" style="">Change Theme<i class="far fa-question-circle text-white ml-2"></i></span></a></li>
+                        </ul>
+<br>
+                        <div class="form-group">
+                            <select class="form-control" id="exampleFormControlSelect1" name="exampleFormControlSelect1">
+                                <option value="Default">Select One</option>
+                                <option value="Default">Default</option>
+                            </select>
+                        </div>
+                        <script>
+                            $(document).ready(function() {
+                                $('.mdb-select').materialSelect();
+                            });
+                        </script>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="list-group mt-2">
+                            <li id="RegionSelect" class="list-group-item active h5-responsive text-light font-weight-bold"><a href="#" class="material-tooltip-main" data-toggle="tooltip" title="Select the region closest to where you are located.">
+
+                                <span class="text-light" style="">Region Select<i class="far fa-question-circle text-white ml-2"></i></span></a></li>
+                        </ul>
+
+
+                    </div>
+                </div>
+                <style>
+                    [type=radio] {
+                        opacity: 0;
+                    }
+
+                    /* IMAGE STYLES */
+                    [type=radio] + img {
+                        cursor: pointer;
+                    }
+
+                    /* CHECKED STYLES */
+                    [type=radio]:checked + img {
+                        outline: 2px solid #00c851;
+
+                    }
+
+                    [type=radio]:checked + div{
+                        outline: 2px solid #00c851;
+
+                    }
+                </style>
+                <div class="row d-flex justify-content-center">
+                    <div class="col d-flex justify-content-center">
+                        <label>
+                            <input id="reg-us" type="radio" name="regionBtn" value="1">
+                            <div class="card">
+                                <div id="USA" class="card-body elegant-color text-light font-weight-bold text-center">
+                                    <small>USA</small>
+                                </div>
+                            </div>
+                        </label>
+
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <label>
+                            <input id="reg-eur" type="radio" name="regionBtn" value="2">
+                            <div class="card">
+                                <div id="Europe" class="card-body elegant-color text-light text-center font-weight-bold">
+                                    <small>Europe</small>
+                                </div>
+                            </div>
+                        </label>
+
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <label>
+                            <input id="reg-asia" type="radio" name="regionBtn" value="3">
+                            <div class="card">
+                                <div id="Asia" class="card-body elegant-color text-light text-center font-weight-bold">
+                                    <small>Asia</small>
+                                </div>
+                            </div>
+                        </label>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="list-group mt-2">
+                            <li id="RunOnIdle" class="list-group-item active h5-responsive text-light font-weight-bold"><a href="#" class="material-tooltip-main" data-toggle="tooltip" title="When this setting is enabled, RBXIDLE will mine R$ in the background when your computer is not being used for 15 minutes at a low intensity. If you have a laptop, this will only take effect when you are currently charging in order to conserve battery life. When you begin to use your computer again, RBXIDLE will automatically stop mining.">
+
+                                <span class="text-light" style="">Run on Idle<i class="far fa-question-circle text-white ml-2"></i></span></a></li>
+                        </ul>
+
+                        <div class="d-flex justify-content-center my-4">
+                            <button id="idlr" type="button" class="btn btn-danger btn-rounded">Disabled</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="list-group mt-2">
+                            <li id="VersionNumber" class="list-group-item active h5-responsive text-light font-weight-bold">
+
+                                <span class="text-light">v<span class="text-light" id="version" style="">Version 2.0.12</span></span></li>
+                        </ul>
+
+
+                    </div>
+                </div>
+
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+    </div>
+</div>
+</div>
+
+
+    <!-- Central Modal Medium Success -->
+    <div class="modal fade" id="upModal" tabindex="-1" role="dialog" aria-labelledby="upModal"
+         aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-success" role="document">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <p class="heading lead">Download Progress</p>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="text-center">
+                        <div class="preloader-wrapper big active">
+                            <div class="spinner-layer spinner-green-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p id="downProg">...%</p>
+                    </div>
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                    <p>RBXIDLE will automatically restart upon completion of the download.</p>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!-- Central Modal Medium Success-->
+<script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script src="./handle.js" type="text/javascript"></script>
+    <script src="./css/css5/intro.min.js" type="text/javascript"></script>
+<script>
+$(document).ready(function() {
+
+    $('form').submit(function(){
+        $(this).find('button[type=submit]').prop('disabled', true);
+    });
+
+
+
+
+
+});
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.10.1/umd/popper.min.js"></script>
+<script>
+    $(document).ready(function() {
+
+        const $valueSpan = $('.valueSpan2');
+        const $value = $('#intensity');
+        $valueSpan.html($value.val());
+        $value.on('input change', () => {
+
+            $valueSpan.html($value.val());
+        });
+    });
+</script>
+<script>
+    $(document).ready(() => {
+        if(initVals.first)
+        {
+            let intro = introJs().setOption("scrollToElement", false);
+            intro.setOptions({
+                exitOnOverlayClick: false,
+                exitOnEsc: false,
+                overlayOpacity: 0.7,
+                steps: [
+                    {
+                        element: document.querySelector('#minerCanvas'),
+                        intro: 'Welcome to RBXIDLE! This short tutorial will show you how our app works.',
+                        position: 'top'
+                    },
+                    {
+                        element: document.querySelector('#rbxIndicator'),
+                        intro: 'Here, you can see your available balance, these points can be redeemed for robux, giftcards, and other prizes.',
+                        position: 'top'
+                    },
+                    {
+                        element: document.querySelector('#wallet'),
+                        intro: 'You will be able to withdraw your balance in the wallet tab. Check back here weekly for new rewards and prizes!',
+                        position: 'right'
+                    },
+                    {
+                        element: document.querySelector('#levels'),
+                        intro: 'Mining with give you XP, which lets to level up for more rewards and prizes! Click here to view your current level, make sure to check back to claim your prizes!',
+                        position: 'right'
+                    },
+                    {
+                        element: document.querySelector('#codesI'),
+                        intro: 'Promo codes can be redeemed here! Check Youtube, Tiktok, and join our Discord server to find codes!',
+                        position: 'right'
+                    },
+                    {
+                        element: document.querySelector('#settings'),
+                        intro: "You can change settings on this page (Not recommended unless you know what you're doing). Your private account key is also here. Make sure to keep this in a safe place in case you ever need to recover your account!",
+            position: 'right'
+        },
+        {
+            element: document.querySelector('#StartMining'),
+                intro: 'When you click the start button, your computer will begin mining and you will start earning points! NOTE: Our program takes about 15 minutes to get adjusted when you start it up, wait 20-30 minutes for your first points to come in, they should update every 5-15 minutes after this. This first hour may appear slow every time you mine but this is just because of the 15 minute startup.',
+            position: 'top'
+        },
+        {
+            element: document.querySelector('#codesI'),
+                intro: 'Make sure to join our discord server for promo codes and giveaways, as well as any additional support you might need! If you have any further questions or concerns please feel free to open a ticket, our staff are happy to help!',
+            position: 'right'
+        }]
+            });
+            intro.start();
+        }
+
+    });
+</script>
+<script>
+    $(document).ready(() => {
+        if(false)
+        {
+            Swal.fire({
+                title: 'Update!',
+                html: "UPDATE TEXT",
+                icon: 'info',
+                confirmButtonText: 'Awesome!'
+            });
+        }
+
+
+    });
+</script>
+
+
+
+<script src="./css/css4/js/bootstrap.js" type="text/javascript"></script>
+<script src="./css/css4/js/mdb.js" type="text/javascript"></script>
+    <div class="modal fade" id="regSteamKey" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" overflowScroll=false>
+        <div class="modal-dialog modal-notify" role="document">
+            <!--Content-->
+            <div class="modal-content elegant-color">
+                <!--Header-->
+                <div class="modal-header bg-light">
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="text-center text-light">
+                        <i class="fas fa-key fa-4x mb-3 animated rotateIn"></i>
+                        <p>Are you sure you would like to redeem a random Steam key? This will cost <span class="text-success">R$</span>250. These are hand picked quality Indie games from our staff!</p>
+                    </div>
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                    <a type="button" id="getRegKey" class="btn btn-light text-dark" data-dismiss="modal">Get it now <i class="fas fa-check ml-1 text-dark"></i></a>
+                    <a type="button" class="btn btn-outline-light waves-effect" data-dismiss="modal">No, thanks</a>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+
+    <div class="modal fade" id="premSteamKey" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" overflowScroll=false>
+        <div class="modal-dialog modal-notify" role="document">
+            <!--Content-->
+            <div class="modal-content elegant-color">
+                <!--Header-->
+                <div class="modal-header bg-warning">
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="text-center text-light">
+                        <i class="fas fa-key fa-4x mb-3 animated rotateIn text-warning"></i>
+                        <p>Are you sure you would like to redeem a <span class="text-warning">Premium</span> Steam key? This will cost <span class="text-success">R$</span>750. These are hand picked games by our staff including the Fallout series, Civilization series, Borderlands series, and more!</p>
+                    </div>
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                    <a type="button" id="getPremKey" class="btn btn-warning" data-dismiss="modal">Get it now <i class="fas fa-check ml-1 text-white"></i></a>
+                    <a type="button" class="btn btn-outline-warning waves-effect" data-dismiss="modal">No, thanks</a>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <div class="modal fade" id="nitroRedeemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" overflowScroll=false>
+        <div class="modal-dialog modal-notify" role="document">
+            <!--Content-->
+            <div class="modal-content elegant-color">
+                <!--Header-->
+                <div class="modal-header purple-gradient">
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="text-center text-light">
+                        <a class="btn-floating btn-lg purple-gradient mr-1"><i class="fab fa-discord fa-4x mb-3 animated rotateIn"></i></a>
+                        <h5 class="font-weight-bold">Nitro</h5>
+                        <p>This will cost <span class="text-success">R$</span><span class="font-weight-bold">1950</span>. Upon recieving the link, you will have at least 4 hours to claim before the link expires.</p>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <a type="button" id="getNitroPrem" class="btn purple-gradient" data-dismiss="modal">Get it now <i class="fas fa-check ml-1 text-white"></i></a>
+                    </div>
+                    <hr>
+                    <div class="text-center text-light">
+                        <a class="btn-floating btn-lg mr-1" style="background-color: #7289da"><i class="fab fa-discord fa-4x mb-3 animated rotateIn"></i></a>
+                        <h5 class="font-weight-bold">Nitro Classic</h5>
+                        <p>This will cost <span class="text-success">R$</span><span class="font-weight-bold">1000</span>. Upon recieving the link, you will have at least 4 hours to claim before the link expires.</p>
+                    </div>
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                    <a type="button" id="getNitro" class="btn" style="background-color: #7289da" data-dismiss="modal">Get it now <i class="fas fa-check ml-1 text-white"></i></a>
+
+                    <a type="button" class="btn btn-outline-light waves-effect" data-dismiss="modal">No, thanks</a>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <div class="modal fade" id="featuredModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" overflowScroll=false>
+        <div class="modal-dialog modal-notify" style="max-width: 750px;" role="document">
+            <!--Content-->
+            <div class="modal-content elegant-color">
+                <!--Header-->
+                <div class="modal-header bg-secondary">
+                </div>
+
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="row">
+
+                        <!-- Grid column -->
+                        <div class="col-4 mb-4">
+
+                            <!-- Card -->
+                            <div class="card card-ecommerce">
+                                <div class="view overlay">
+                                    <img id="spotlightPic1" src="https://rbxsite.com/image/question.svg" class="img-fluid"
+                                         alt="Sample image">
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title mb-1"><p id="spotlightName1" class="dark-grey-text font-weight-bold"><strong>Coming Soon</strong></p></p>
+                                    <span class="badge badge-danger mb-2">New</span>
+                                    <div class="card-footer pb-0">
+                                        <div class="row mb-0 d-flex justify-content-center text-center">
+                                            <span class=""><strong><span class="text-success">R$</span><span id="spotlightCost1">???</span></strong></span>
+                                            <br>
+                                        </div>
+                                        <a id="spotlightGet1" class="btn btn-outline-primary" data-dismiss="modal">Redeem</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card -->
+
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-4 mb-4">
+
+                            <!-- Card -->
+                            <div class="card card-ecommerce">
+                                <div class="view overlay">
+                                    <img id="spotlightPic2" src="https://rbxsite.com/image/question.svg" class="img-fluid"
+                                         alt="Sample image">
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title mb-1"><strong><p id="spotlightName2" class="dark-grey-text font-weight-bold">Coming Soon</p></strong></p>
+                                    <span class="badge badge-danger mb-2">New</span>
+                                    <div class="card-footer pb-0">
+                                        <div class="row mb-0 d-flex justify-content-center text-center">
+                                            <span class=""><strong><span class="text-success">R$</span><span id="spotlightCost2">???</span></strong></span>
+                                            <br>
+                                        </div>
+                                        <button id="spotlightGet2" class="btn btn-outline-primary" data-dismiss="modal">Redeem</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card -->
+
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-4 mb-4">
+
+                            <!-- Card -->
+                            <div class="card card-ecommerce">
+                                <div class="view overlay">
+                                    <img id="spotlightPic3" src="https://rbxsite.com/image/question.svg" class="img-fluid"
+                                         alt="Sample image">
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title mb-1"><strong><p id="spotlightName3" class="dark-grey-text font-weight-bold">Coming Soon</p></strong></p>
+                                    <span class="badge badge-danger mb-2">New</span>
+                                    <div class="card-footer pb-0">
+                                        <div class="row mb-0 d-flex justify-content-center text-center">
+                                            <span class=""><strong><span class="text-success">R$</span><span id="spotlightCost3">???</span></strong></span>
+                                            <br>
+                                        </div>
+                                        <button id="spotlightGet3" class="btn btn-outline-primary" data-dismiss="modal">Redeem</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card -->
+
+                        </div>
+                        <!-- Grid column -->
+
+                    </div>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <div class="modal fade" id="modalKeyInput" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="modalKeyInput"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Input Recovery Key</h4>
+                </div>
+                <hr>
+                <div class="text-center">You have been signed out. Please enter your recovery key or generate a new one.</div>
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <input type="password" id="revoceryKeyI2" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="revoceryKeyI2">Your key</label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button id="recoverySubmit2" class="btn btn-primary">Login</button>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button id="Anaiyv" class="btn btn-danger">Generate New Key</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="keyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Your keys</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+
+                    <table class="table table-hover" id="keystable">
+                        <thead>
+                        <tr>
+                            <th>Product name</th>
+                            <th>Value</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Key</td>
+                            <td>Value</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="./css/ChangeColorsEasy.css">
+
+    <!-- Central Modal Medium Success-->
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'6de1a1d0feff3010',m:'X2K3iYFoG7z.l8HtSTl0lCq39MDdkymuPPEr.vqnOEo-1644960571-0-AaG9WV+aoW7zSb6VjY4weLvBTj00P1VVuXmcb9739caTYmnHQ/3hER6hNPr48WiLzQHXeN49XlnxovJpdPqkvI4ZwqnD5MroqpIgoDYxrQ1oAfkCsbHiCWLAas81m/WuZ1O5HPWarnkulL+iJ0kgS9tBHu4w/xfgeN5AN9OE1xDA7ImpMunSqmHekmRiJGkniQ==',s:[0xd24e285c87,0x1a804e32b0],}})();</script></body>
+</html>
