@@ -199,6 +199,9 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+    .pills-primary .nav-link.active {
+        background-color: #444397 !important;
+    }
 </style>
 <div id="loading">
     <img id="loading-image" src="./resources/MinerCart.gif" alt="Loading..." />
@@ -206,11 +209,6 @@
 <link rel="stylesheet" href="../orangeStyle.css" id="light">
 <div class="">
     <div class="row">
-        <style>
-            .pills-primary .nav-link.active {
-                background-color: #444397 !important;
-            }
-        </style>
         <script>
             function changeToLvl(){
                 console.log('changing');
@@ -253,7 +251,7 @@
                         <div class="col-9">
                             <div class="">
                                 <section>
-                                    <div class="card" style="background-color: #444397">
+                                    <div class="card bg-primary" style="">
                                         <div id="ChartBg" class="card-body">
                                             <p class="h5 white-text pb-4 mb-3"><i class="fas fa-chart-pie px-2"></i>Earnings Accumulated</p>
                                             <canvas id="lineChart1" class="" height="100"></canvas>
@@ -278,7 +276,7 @@
                         <div class="col-4 pr-0">
                             <div class="ml-0 card elegant-color">
                                 <div id="Smallbg" class="">
-                                    <i id="MoneySymbol" style="background-color: #444397" class="far fa-money-bill-alt fa-lg z-depth-2 p-4 ml-3 mt-3 rounded text-white"></i>
+                                    <i id="MoneySymbol" style="" class="far fa-money-bill-alt primary-color fa-lg z-depth-2 p-4 ml-3 mt-3 rounded text-white"></i>
                                     <div class="float-right text-right p-3">
                                         <p class="text-uppercase text-light mb-1"><small>Balance</small></p>
                                         <h4 class="font-weight-bold text-white mb-0"><span id="rbxIndicator">0</span><span class="text-success"> R$</span></h4>
@@ -296,7 +294,7 @@
                         </div>
                         <div class="col-8">
                             <div class="card elegant-color card-list">
-                                <div id="DetectingHardware" style="background-color: #444397" class="card-header d-flex justify-content-between align-items-center py-3">
+                                <div id="DetectingHardware" style="" class="card-header bg-primary d-flex justify-content-between align-items-center py-3">
                                     <p class="h5-responsive text-light font-weight-bold mb-0">Detected Hardware<span id="refHardware" class="badge badge-pill badge-warning ml-2">Refresh</span></p>
                                 </div>
                                 <div id="GraphicsCardBG" class="card-body pb-0">
